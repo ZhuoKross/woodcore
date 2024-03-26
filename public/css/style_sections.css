@@ -1,0 +1,121 @@
+.container-content-cards{
+    display: flex;
+    flex-direction: column;
+}
+
+.content-cards{
+    display: flex;
+    align-items: center;
+}
+
+.content-cards img{
+    width: 600px;
+    height: 600px;
+}
+
+.content-cards div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-cards div p{
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+
+.content-cards h2{
+    font-size: 30px;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #000;
+}
+
+
+.content-cards:nth-child(2){
+    background-color: #566c82;
+}
+
+
+.content-cards:nth-child(2) p{
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+    color: #e1e1e1;
+}
+
+.content-cards:nth-child(1) p{
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+
+
+.content-cards:nth-child(3) p{
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+/* Estilos de los botones */
+
+.btn-s-1{
+    background-color: #263d54;
+    text-align: center;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+}
+
+.btn-s-1 a{
+    font-size: 25px;
+    text-decoration: none;
+    color: #e1e1e1;
+}
+
+.btn-s-1:hover{
+    background-color: #566c82;
+}
+
+.btn-s-3{
+    background-color: #263d54;
+    text-align: center;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+}
+
+.btn-s-3 a{
+    font-size: 25px;
+    text-decoration: none;
+    color: #e1e1e1;
+}
+
+.btn-s-3:hover{
+    background-color: #566c82;
+}
+
+
+
+
+.img-c-s-01{
+    margin-left: 20px;
+}
+
+.img-c-s-02{
+    margin-right: 20px;
+    order: 10;
+}
+
+.img-c-s-03{
+    margin-left: 20px;
+}
+

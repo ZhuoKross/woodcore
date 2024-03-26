@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación proyecto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/creacion_proyecto.css">
+
+
+</head>
+
+<body>
+    <!-- Creacion proyectos -->
+    <!-- Contenedor principal -->
+    <section>
+        <div class="row g-0">
+            <div class="col-lg-6 logo-container">
+                <img src="/img/marca/woodcore-logo-proyecto.png" class=" logo " alt="">
+
+            </div>
+            <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100">
+                <div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
+                    <h1 class="font-weight-bold mb-4">Crear proyecto</h1>
+                    <form class="needs-validation" action="/validar" method="post" onsubmit="return validarRegistro()">
+                        <!-- Nombre -->
+                        <div class="mb-2">
+                        <div class="col-sm-9 input-group">
+                            <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
+                                id="InputNombre" placeholder="Nombre" minlength="10" required>
+                            <span class="input-group-text"><i class="bi bi-person-vcard input-group-text"></i></span>
+                        </div>
+                    </div>
+
+                        <!-- Prioridad-->
+                        <div class="mb-3">
+                            <label for="Prioridad " class="form-label font-weight-bold">Prioridad :</label>
+                            <div class="col-sm-9 input-group">
+                                <select name="Prioridad " class="form-select" id="Prioridad " required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="value-1">Urgentes e importantes</option>
+                                    <option value="value-2">Importantes pero no urgente</option>
+                                    <option value="value-3">Urgente pero no importante</option>
+                                    <option value="value-4">Ni urgente ni importante</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Sprint -->
+                        <div class="mb-3">
+                            <label for="Sprint" class="form-label font-weight-bold">Sprint:</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="date" name="Sprint" class="form-control bg-dark-x border-0 flex-grow-1"
+                                    id="Sprint" required>
+                            </div>
+                        </div>
+
+                        <!-- Encargado del proyecto -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
+                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6" required>
+                                <span class="input-group-text"><i
+                                        class="bi bi-person-vcard input-group-text"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Miembros del proyecto -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="Miembros del proyecto"
+                                    class="form-control bg-dark-x border-0 flex-grow-1" id="Miembros del proyecto"
+                                    placeholder="Miembros del proyecto" minlength="6" required>
+                                <span class="input-group-text"><i
+                                        class="bi bi-person-vcard input-group-text"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Roles del equipo -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
+                                    id="Roles del equipo" placeholder="Roles del equipo" minlength="6" required>
+                                <span class="input-group-text"><i
+                                        class="bi bi-person-add input-group-text ms-2"></i></span>
+                            </div>
+
+                        </div>
+
+                        <!-- boton de Registrarse -->
+                        <button type="submit" class="btn bg-black w-100 text-white mb-1" id="btnAlerta">Registrarse</button>
+
+                    </form>
+                    <div class="d-flex justify-content-around mb-2">
+                        <a href="/inicio_sesion.html" class="btn btn-outline-light flex-grow-1 mx-2"><i
+                                class="bi bi-arrow-left-circle lead mr-2"></i>Volver a la mesa de trabajo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+    <!-- script de validacion formulario -->
+    <script>
+        function validarRegistro() {
+            var nombreProyecto = document.getElementById("Nombre").value;
+            var prioridad = document.getElementById("Prioridad").value;
+            var sprint = document.getElementById("Sprint").value;
+            var encargado = document.getElementById("Encargado").value;
+            var miembros = document.getElementById("Miembros").value;
+            var roles = document.getElementById("Roles").value;
+
+
+            if (nombreProyecto.trim() === "" || prioridad === "" || sprint.trim() === "" || encargado.trim() === "" || miembros.trim() === "" || roles.trim() === "") {
+                alert("Por favor completa todos los campos obligatorios.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+
+
+</html>

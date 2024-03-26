@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landin Page</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <!-- libreria iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- libreria menu hamburguesa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <div class="container-nav">
+            <div class="bubbles">
+                <span style="--i:11;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:23;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:28;"></span>
+
+            </div>
+            <nav>
+                <ul class="nav-bar">
+                    <li class="logo">
+                        <a href="#">
+                            <img src="img/marca/woodcore-logo-proyecto.png" alt="logo">
+                        </a>
+                    </li>
+                    <input type="checkbox" id="check">
+                    <span class="menu">
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#contactanos">Contacto</a></li>
+                        <li><a href="/login">Iniciar sesión</a></li>
+                        <li><a href="/sign-up">Registrarse</a></li>
+                        <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                    </span>
+                    <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+                </ul>
+            </nav>
+            <section class="textos-header">
+                <h1>La mejor forma de Gestionar tus proyectos!!</h1>
+                <br><br>
+                <div class="btn-main-content">
+                    <a href="/sign-up">Comenzar</a>
+                </div>
+            </section>
+
+        </div>
+    </header>
+    <main>
+        <section class="about-services" id="funcionalidades">
+            <div class="contenedor">
+                <h1 class="titulo">Funcionalidades</h1>
+                <div class="servicio-cont">
+                    <div class="servicio-ind">
+                        <img src="img/img1.jpg" alt="">
+                        <br><br><br><br>
+                        <h3>Creacion de proyectos</h3>
+                        <p>Podras organizar mas equitativamente tus proyectos.</p>
+                        <br>
+                        <div class="btn-main-content">
+                            <a href="#card-2">Ver mas</a>
+                        </div>
+                    </div>
+
+                    <div class="servicio-ind">
+                        <img src="img/img2.jpeg" alt="">
+                        <br><br><br>
+                        <h3>Plantear idea del proyecto</h3>
+                        <p>podras reunirte con los usuarios y dialogar la idea de proyecto en tiempo real.</p>
+                        <br>
+                        <div class="btn-main-content">
+                            <a href="#card-1">Ver mas</a>
+                        </div>
+                    </div>
+
+                    <div class="servicio-ind">
+                        <img src="img/img3.jpeg" alt="">
+                        <br><br><br>
+                        <h3>Creacion de tareas</h3>
+                        <p>Podras crear mas equitativamente tus tareas.</p>
+                        <br>
+                        <div class="btn-main-content">
+                            <a href="#card-3">Ver mas</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Section of content cards -->
+    <!-- Content of card 1 -->
+    <section class="container-content-cards">
+        <article class="content-cards" id="card-1">
+            <img class="img-c-s-02" src="./img/svg/planing.svg" alt="">
+            <div>
+                <h2>Plantear idea del proyecto</h2>
+                <p>Wodcore management te proporciona la opción de organizar con tu grupo de trabajo a través de
+                    un tablero las
+                    idea de cada una de las personas que conforman ese proyecto, para asi mejorar las bases y
+                    tener una visualizacion
+                    mas clara del proyecto a realizar!!</p>
+                <div class="btn-main-content">
+                    <a href="inicio_sesion.html">Comenzar</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- content of card 2 -->
+        <article class="content-cards" id="card-2">
+            <img class="img-c-s-01" src="./img/svg/success.svg">
+            <div>
+                <h2>Creación de proyectos</h2>
+                <p>Wodcore Management te proporciona la opción de crear proyectos de manera mas
+                    equitativamente a nivel de
+                    empresa o a nivel personal, dando mas organizacion a tus ideas. </p>
+                <div class="btn-main-content">
+                    <a href="inicio_sesion.html">Comenzar</a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- Content of card 3 -->
+        <article class="content-cards" id="card-3">
+            <img class="img-c-s-03" src="./img/svg/progress.svg" alt="">
+            <div>
+                <h2>Creacion de tareas</h2>
+                <p>Wodcore Management te proporciona la opción de crear tareas de manera mas equitativamente
+                    a
+                    nivel de empresa o a nivel personal, dando mas organizacion a tus ideas.</p>
+                <div class="btn-main-content">
+                    <a href="inicio_sesion.html">Comenzar</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- Footer Contacto -->
+    <div class="container" id="contactanos">
+        <div class="footer-row">
+            <div class="logo">
+                <figure>
+                    <a href="#">
+                        <img src="img/marca/woodcore-logo-proyecto.png" alt="logo empresa.">
+                    </a>
+                </figure>
+            </div>
+            <div class="footer-links">
+                <h4>Compañia</h4>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Nuestras funcionalidades</a></li>
+                    <li><a href="#">Politica de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Guias de uso</a></li>
+                    <li><a href="#">Actualizaciones y noticias</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Comunicate con nosotros</h4>
+                <div class="social-link">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

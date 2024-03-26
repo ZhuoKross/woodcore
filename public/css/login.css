@@ -1,0 +1,45 @@
+/* * {
+    box-sizing: content-box !important;
+}
+
+body{
+    background: linear-gradient( #263D54 , #e1e1e1);
+
+
+} */
+
+:root {
+    --dark: #0000;
+    --dark-x: blue;
+    --light: #ffff;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    color: var(--light);
+    background: #263D54;
+}
+
+/* .login-img {
+    width: 25%;
+} */
+
+.form-control, btn{
+    min-height: 1.115rem;
+    line-height: initial;
+}
+
+.img-1{
+    background-image: url('/img/login_img1.png');
+    background-size: cover;
+    background-position: center;
+}
+.img-2{
+    background-image: url('/img/login_img2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+

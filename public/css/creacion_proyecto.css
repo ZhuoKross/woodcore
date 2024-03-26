@@ -1,0 +1,35 @@
+:root {
+    --dark: #0000;
+    --dark-x: blue;
+    --light: #ffff;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    color: var(--light);
+    background: #263D54;
+}
+
+.form-control, btn{
+    min-height: 1.115rem;
+    line-height: initial;
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 60%;
+    border-radius: 50%;
+}
+
+
+/* container-logo{
+    justify-content: center;
+    text-align: center;
+} */

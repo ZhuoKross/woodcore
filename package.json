@@ -1,0 +1,20 @@
+{
+  "name": "proyecto_sena",
+  "version": "1.0.0",
+  "description": "Gestión y creación de proyectos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "commonjs",
+  "keywords": [],
+  "author": "Michael Garnica",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  }
+}
