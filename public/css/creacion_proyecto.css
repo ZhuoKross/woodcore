@@ -1,7 +1,18 @@
+@import url("dashboard.css");
+
+
 :root {
     --dark: #0000;
     --dark-x: blue;
     --light: #ffff;
+    --primary-color: #101D2E;
+    --text-color: #f2f2f2;
+    --bg-color: #263d54;
+    --bg-color-soft-1: #3b5269;
+    --bg-dashboard: #748696;
+    --bg-color-soft-2:#566c82;
+    --bg-blue-light: #20c3c9 ;
+
 }
 
 body {
@@ -10,6 +21,10 @@ body {
     font-style: normal;
     color: var(--light);
     background: #263D54;
+}
+
+._nav{
+    background-color: var(--primary-color);
 }
 
 .form-control, btn{

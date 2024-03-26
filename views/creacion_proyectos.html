@@ -15,7 +15,95 @@
 <body>
     <!-- Creacion proyectos -->
     <!-- Contenedor principal -->
-    <section>
+    <section class="padre-primordial">
+
+        <!-- Sección de aside -->
+        <nav class="_nav">
+            <ul class="nav__list">
+                <!-- elemento home -->
+                <li class="nav__item">
+                    <figure class="nav__figure">
+                        <img src="/img/svg/home.svg" class="nav__img">
+                    </figure>
+
+                    <article class="nav-show">
+                        <a class="nav-name" href="/dashboard">
+                            Inicio
+                        </a>
+                    </article>
+                </li>
+
+
+                <li class="nav__item">
+                    <figure class="nav__figure">
+                        <img src="/img/svg/add-project.svg" class="nav__img">
+                    </figure>
+
+                    <article class="nav-show">
+                        <a class="nav-name" href="/add-project">
+                            Crear Projecto
+                        </a>
+                    </article>
+                </li>
+
+
+                <li class="nav__item">
+                    <figure class="nav__figure">
+                        <img src="/img/svg/add-task.svg" class="nav__img">
+                    </figure>
+
+                    <article class="nav-show">
+                        <a class="nav-name" href="/add-task">
+                            Crear Tarea
+                        </a>
+                    </article>
+                </li>
+
+                <li class="nav__item">
+                    <figure class="nav__figure">
+                        <img src="/img/svg/setting.svg" class="nav__img">
+                    </figure>
+
+                    <article class="nav-show">
+                        <a class="nav-name" href="#">
+                            Configuración
+                        </a>
+                    </article>
+                </li>
+
+
+
+                <li class="nav__item nav__item--down">
+                    <figure class="nav__figure">
+                        <img src="/img/svg/help.svg" class="nav__img">
+                    </figure>
+
+                    <article class="nav-show">
+                        <a class="nav-name" href="#">
+                            Ayuda
+                        </a>
+                    </article>
+                </li>
+
+
+                <li class="nav__item nav__item--user">
+                    <figure class="nav__figure">
+                        <img src="/img/persona1.jpg" class="nav__img nav__img--avatar">
+                    </figure>
+
+                    <article class="nav-show">
+                        <div class="nav-name nav__name--user">
+                            <h4 class="nav__username">Albert Wickman</h4>
+                            <p class="nav__rol">Podruct Owner</p>
+                        </div>
+                    </article>
+
+                </li>
+            </ul>
+            <!-- contenedor del perfil -->
+
+        </nav>
+
         <div class="row g-0">
             <div class="col-lg-6 logo-container">
                 <img src="/img/marca/woodcore-logo-proyecto.png" class=" logo " alt="">
@@ -27,12 +115,13 @@
                     <form class="needs-validation" action="/validar" method="post" onsubmit="return validarRegistro()">
                         <!-- Nombre -->
                         <div class="mb-2">
-                        <div class="col-sm-9 input-group">
-                            <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
-                                id="InputNombre" placeholder="Nombre" minlength="10" required>
-                            <span class="input-group-text"><i class="bi bi-person-vcard input-group-text"></i></span>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
+                                    id="InputNombre" placeholder="Nombre" minlength="10" required>
+                                <span class="input-group-text"><i
+                                        class="bi bi-person-vcard input-group-text"></i></span>
+                            </div>
                         </div>
-                    </div>
 
                         <!-- Prioridad-->
                         <div class="mb-3">
@@ -61,7 +150,8 @@
                         <div class="mb-3">
                             <div class="col-sm-9 input-group">
                                 <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
-                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6" required>
+                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6"
+                                    required>
                                 <span class="input-group-text"><i
                                         class="bi bi-person-vcard input-group-text"></i></span>
                             </div>
@@ -90,11 +180,12 @@
                         </div>
 
                         <!-- boton de Registrarse -->
-                        <button type="submit" class="btn bg-black w-100 text-white mb-1" id="btnAlerta">Registrarse</button>
+                        <button type="submit" class="btn bg-black w-100 text-white mb-1" id="btnAlerta">Crear
+                            Proyecto</button>
 
                     </form>
                     <div class="d-flex justify-content-around mb-2">
-                        <a href="/inicio_sesion.html" class="btn btn-outline-light flex-grow-1 mx-2"><i
+                        <a href="/dashboard" class="btn btn-outline-light flex-grow-1 mx-2"><i
                                 class="bi bi-arrow-left-circle lead mr-2"></i>Volver a la mesa de trabajo</a>
                     </div>
                 </div>
