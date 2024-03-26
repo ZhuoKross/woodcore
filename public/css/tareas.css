@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,700&display=swap');
+@import url("dashboard.css");
 
 body{
     margin: 0;
@@ -17,6 +18,17 @@ body{
     --bg-color-soft-2:#566c82;
     --bg-blue-light: #20c3c9 ;
 }
+
+._nav{
+    background-color: var(--primary-color);
+}
+
+
+textarea{
+    resize: none;
+    border-radius: 20px;
+}
+
 
 .padre-primordial{
     display: flex;
