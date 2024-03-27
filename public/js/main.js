@@ -30,7 +30,7 @@ function fetchTareas() {
 
                 // creación de los elmentos para las tareas
                 const contenedorTarea = document.createElement("div");
-                const iconTask = document.createElement("img");
+                // const iconTask = document.createElement("img");
                 const contenedorContenido = document.createElement("div");
                 const nombreTarea = document.createElement("p");
                 const prioridadTarea = document.createElement("p");
@@ -43,7 +43,7 @@ function fetchTareas() {
                 // Definición de atributos y clases
                 contenedorTarea.classList.add("task", "d-flex", "justify-content-start", "rounded-top", "me-2", "mb-2");
                 contenedorTarea.setAttribute("draggable", true);
-                iconTask.classList.add("task-icon", "align-self-center", "me-2");
+                // iconTask.classList.add("task-icon", "align-self-center", "me-2");
 
                 contenedorContenido.classList.add("desc-task", "d-flex", "flex-column", "justify-content-center");
 
@@ -55,7 +55,7 @@ function fetchTareas() {
 
 
                 // Agregando el contenido de las tareas
-                iconTask.setAttribute("src", "../img/svg/task-icon.svg");
+                // iconTask.setAttribute("src", "../img/svg/task-icon.svg");
                 nombreTarea.innerText = "Nombre: " + task.nombre;
                 prioridadTarea.innerText = "Prioridad: " + task.prioridad;
                 estadoTarea.innerText = "Estado: " + task.estado;
@@ -69,7 +69,7 @@ function fetchTareas() {
                 contenedorContenido.appendChild(encargadoTarea);
 
                 contenedorTarea.appendChild(contenedorContenido);
-                contenedorTarea.insertAdjacentElement("afterbegin", iconTask);
+                // contenedorTarea.insertAdjacentElement("afterbegin", iconTask);
                 tareaSinHacer.appendChild(contenedorTarea);
 
 
