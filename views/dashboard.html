@@ -16,12 +16,12 @@
 </head>
 
 <body>
-    
+
     <section class="padre-primordial">
-        
-        
-        
-        
+
+
+
+
         <!-- Sección de aside -->
         <nav class="_nav">
             <ul class="nav__list">
@@ -31,7 +31,7 @@
                         <img src="/img/svg/home.svg" class="nav__img">
                     </figure>
 
-                    <article class="nav-show" >
+                    <article class="nav-show">
                         <a class="nav-name" href="/dashboard">
                             Inicio
                         </a>
@@ -51,7 +51,7 @@
                     </article>
                 </li>
 
-                
+
                 <li class="nav__item">
                     <figure class="nav__figure">
                         <img src="/img/svg/add-task.svg" class="nav__img">
@@ -122,8 +122,8 @@
                 <div class="d-flex justify-content-center">
                     <nav class="navbar w-75 rounded-pill ms-3 mt-2 ">
                         <ul class="d-flex align-items-center mb-0 nav__list--dashboard">
-                            <li class="nav-item me-3"><a class="nav-link " href="#"
-                                    id="crearProyectos"> Ver proyectos</a></li>
+                            <li class="nav-item me-3"><a class="nav-link " href="#" id="crearProyectos"> Ver
+                                    proyectos</a></li>
                             <li class="nav-item"><a class="nav-link " href="#" id="crearTareas"> Ver
                                     tareas </a></li>
                         </ul>
@@ -134,12 +134,22 @@
                 <div class="container-dashboard d-flex" id="container-dashboard">
                     <div>
                         <h4 class="text-center title-tasks"> Tareas sin hacer</h4>
-                        <div class="container-task sinHacer me-2 ms-3 p-1" id="sinHacer"> </div>
+                        <div class="container-task sinHacer me-2 ms-3 p-1" id="sinHacer">
+                            <button class="btn-task"> 
+                                <img src="../img/svg/plus-square.svg" class="icon-btn">
+                                Agregar Tarea                                
+                            </button>
+                            
+                        </div>
                     </div>
 
                     <div>
                         <h4 class="text-center title-tasks">Tareas en Proceso</h4>
                         <div class="container-task Haciendo me-2 d-flex flex-column  p-1" id="Haciendo">
+                            <button class="btn-task"> 
+                                <img src="../img/svg/plus-square.svg" class="icon-btn">
+                                Agregar Tarea                                
+                            </button>
                             <div class="task d-flex justify-content-start rounded-top me-2 mb-2 " draggable="true">
                                 <img src="../img/svg/task-icon.svg" class="task-icon align-self-center me-2">
                                 <div class="desc-task d-flex flex-column justify-content-center ">
@@ -172,7 +182,12 @@
 
                     <div>
                         <h4 class="text-center title-tasks">Tareas Realizadas</h4>
-                        <div class="container-task taskHecho me-2 p-1" id="taskHecho"> </div>
+                        <div class="container-task taskHecho me-2 p-1" id="taskHecho"> 
+                            <button class="btn-task"> 
+                                <img src="../img/svg/plus-square.svg" class="icon-btn">
+                                Agregar Tarea                                
+                            </button>
+                        </div>
                     </div>
                 </div>
             </article>
