@@ -135,34 +135,53 @@
                     <div>
                         <h4 class="text-center title-tasks"> Tareas sin hacer</h4>
                         <div class="container-task sinHacer me-2 ms-3 p-1" id="sinHacer">
-                            <button class="btn-task"> 
+                            <button class="btn-task">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
-                                Agregar Tarea                                
+                                Agregar Tarea
                             </button>
-                            
+
                         </div>
                     </div>
 
                     <div>
                         <h4 class="text-center title-tasks">Tareas en Proceso</h4>
                         <div class="container-task Haciendo me-2 d-flex flex-column  p-1" id="Haciendo">
-                            <button class="btn-task"> 
+                            <button class="btn-task">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
-                                Agregar Tarea                                
+                                Agregar Tarea
                             </button>
                             <div class="task d-flex flex-column rounded-top me-2 mb-2 " draggable="true">
                                 <!-- <img src="../img/svg/task-icon.svg" class="task-icon align-self-center me-2"> -->
-                                <div class="d-flex">
-                                    <img src="../public/img/persona4.jpg" alt="">
-                                    <p>Fecha</p>
-                                    <p>03/04/2024</p>
+                                <div class="container-heading-task d-flex w-100  align-items-center">
+                                    <img src="../img/persona4.jpg" class="rounded-circle nav__img--avatar ms-2">
+                                    <div class="d-flex flex-column ms-1 align-items-center">
+                                        <p class="mb-0 pt-2 fw-bold">Altman Benice</p>
+                                        <p class="t-encargado">Encargado</p>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center me-3 ms-5">
+                                        <p class="mb-0 t-fecha">Fecha límite</p>
+                                        <p class="fecha">03/04/2024</p>
+                                    </div>
                                 </div>
-                                
-                                
-                                <div class="desc-task d-flex flex-column justify-content-center ">
-                                    <p class="mb-0 fw-bold">Nombre: Hacer issue de drag and drop</p>
-                                    <p class="mb-0">Encargado: Ben Winhof</p>
-                                    <p class="mb-0">Prioridad: Urgente e importante</p>
+                                <div class="desc-task d-flex flex-column justify-content-center ms-2">
+                                    <div class="d-flex mb-2 mt-2">
+                                        <p class="mb-0 fw-bold fs-5">Hacer issue de drag and drop</p>
+                                        <p class="mb-0 text-wrap bg-success rounded-pill text-center state ms-1">activa</p>
+                                    </div>
+                                    <p class="mb-2"><b>Descripción:</b> Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Facilis iste cumque ipsum veniam autem corporis nesciunt
+                                        possimus eligendi voluptates veritatis!</p>
+                                    <div class="container-prioridad d-flex">
+                                        <p class="mb-1 me-2"><b>Prioridad:</b></p>
+                                        <p class="category text-wrap w-50 rounded-pill text-center mb-0">Urgente e
+                                            importante</p>
+                                    </div>
+
+                                </div>
+                                <div class="states d-flex mt-4 justify-content-between ms-3">
+                                    <div class="first-state rounded-pill bg-primary w-50 me-1"></div>
+                                    <div class="second-state rounded-pill bg-primary w-50 me-1"></div>
+                                    <div class="third-state rounded-pill bg-secondary w-50"></div>
                                 </div>
                             </div>
 
@@ -189,10 +208,10 @@
 
                     <div>
                         <h4 class="text-center title-tasks">Tareas Realizadas</h4>
-                        <div class="container-task taskHecho me-2 p-1" id="taskHecho"> 
-                            <button class="btn-task"> 
+                        <div class="container-task taskHecho me-2 p-1" id="taskHecho">
+                            <button class="btn-task">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
-                                Agregar Tarea                                
+                                Agregar Tarea
                             </button>
                         </div>
                     </div>
