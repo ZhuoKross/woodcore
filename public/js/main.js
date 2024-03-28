@@ -170,7 +170,8 @@ async function obtenerYCrearEventosTareas() {
 
         const arrayTareas = Array.from(tareas);
 
-        console.log(arrayTareas);
+        // Pruba de código
+        // console.log(arrayTareas);
         
         // total de tareas
         const tareasTotales = arrayTareas.length;
@@ -237,6 +238,52 @@ async function obtenerYCrearEventosTareas() {
 }
 
 
+// Funcionalidad pra el form de crear tareas
+const abrirModalForm = document.querySelectorAll(".abrir-form");
+const cerrarModalForm = document.querySelectorAll("#cerrar-form");
+const modalForm = document.querySelectorAll("#modal-form")
+
+modalForm.forEach(form =>{
+    const Formtask = form; 
+    
+    abrirModalForm.forEach(elemento =>{
+        elemento.addEventListener("click", ()=>{
+            Formtask.showModal();
+        })
+    })
+    
+    cerrarModalForm.forEach(elemento =>{
+        elemento.addEventListener("click", ()=>{
+            Formtask.close()
+        })
+    })
+})
+
+// 
+
+modalForm.forEach( form =>{
+    const formCreatTask = form;
+    
+    formCreatTask.addEventListener("submit", async (e)=>{
+        e.preventDefault()
+        const res = await fetch("http://localhost:3000/api/add-task", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                nombre: e.target.children[0].children[0].children.nombre_task.value,
+                prioridad: e.target.children[0].children[0].children.prioridad.value,
+                descripcion: e.target.children[0].children[0].children[4].children.des_task.value,
+                estado: e.target.children[0].children[1].children.estado.value,
+                encargado: e.target.children[0].children[1].children.encargado.value,
+                sprint: e.target.children[0].children[1].children.sprint_task.value
+            })
+        })
+        console.log(e)
+
+    })
+})
 
 
 

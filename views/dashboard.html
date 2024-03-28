@@ -130,12 +130,73 @@
                     </nav>
                 </div>
 
+                <!-- Form para la creación de tareas -->
+                <dialog id="modal-form">
+                    <h2 class="text-dark">Añadir una tarea</h2>
+                    <form class="form-tasks">
+
+                        <!-- inputs del formulario -->
+                        <div class="container-form-tasks-content d-flex p-3">
+                            <!-- Nombre tarea -->
+                            <div class="form-task-section-1 d-flex flex-column me-4 w-100">
+                                <label for="nombre_task"> Nombre de la tarea:</label>
+                                <input type="text" id="nombre_task" name="nombre_task" class="mb-3 form-control border-0">
+        
+                                <!-- Prioridad de la tarea -->
+                                <label for="prioridad"> Prioridad de la tarea:</label>
+                                <select name="prioridad" id="prioridad" class="form-select">
+                                    <option value="Urgente e importante">Urgente e importante</option>
+                                    <option value="Importante pero no urgente">Importante pero no urgente </option>
+                                    <option value="Urgente pero no importante">Urgente pero no importante</option>
+                                    <option value="Ni urgente ni importante">Ni urgente ni importante</option>
+                                </select>
+        
+                                <!-- Descripción de la tarea -->
+                                <div class="des-task mb-3 mt-3">
+                                    <label for="des_task">Descripción de la tarea:</label>
+        
+                                    <textarea id="des_task" cols="30" rows="10" name="des_task"></textarea>
+                                </div>
+                            </div>
+        
+                            <div class="form-task-section-2 d-flex flex-column w-100">
+                                <!-- estado de la tarea -->
+                                <label for="estado"> Estado de la tarea:</label>
+                                <select name="estado_tarea" id="estado" class=" form-select">
+                                    <option value="sin hacer">Sin Hacer</option>
+                                    <option value="en proceso">En proceso</option>
+                                    <option value="Realizada">Realizada</option>
+                                </select>
+        
+                                <!-- Encargado -->
+                                <label for="encargado"> Encargado de la tarea:</label>
+                                <input type="text" id="encargado" name="encargado" class="form-control border-0">
+        
+                                <!-- fecha límite de la tarea -->
+                                <label for="sprint_task"> Fecha límite:</label>
+                                <input type="date" id="sprint_task" name="sprint_task" class="form-control">
+                            </div>
+                        </div>
+        
+                        <!-- Botones del form -->
+                        <div class="btns-tasks d-inline-flex justify-content-center">
+                            <button class="me-4 btn btn-lg">Crear tarea</button>
+                        </div>
+                    </form>
+                    <!-- botón para cerrar el form -->
+                    <div class="btns-tasks d-inline-flex justify-content-center">
+                        <button class="btn btn-lg" id="cerrar-form">Volver</button>
+                    </div>
+                </dialog>
+
+
+                <!-- Parte del dashboard -->
                 <h2 class="text-center mb-3">Proyecto X</h2>
                 <div class="container-dashboard d-flex" id="container-dashboard">
                     <div>
                         <h4 class="text-center title-tasks"> Tareas sin hacer</h4>
                         <div class="container-task sinHacer me-2 ms-3 p-1" id="sinHacer">
-                            <button class="btn-task">
+                            <button class="btn-task abrir-form">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
                                 Agregar Tarea
                             </button>
@@ -146,7 +207,7 @@
                     <div>
                         <h4 class="text-center title-tasks">Tareas en Proceso</h4>
                         <div class="container-task Haciendo me-2 d-flex flex-column  p-1" id="Haciendo">
-                            <button class="btn-task">
+                            <button class="btn-task abrir-form">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
                                 Agregar Tarea
                             </button>
@@ -183,23 +244,6 @@
                                 </div>
                             </div>
 
-                            <div class="task d-flex justify-content-start rounded-top me-2 mb-2 " draggable="true">
-                                <!-- <img src="./img/svg/task-icon.svg" class="task-icon align-self-center me-2"> -->
-                                <div class="desc-task d-flex flex-column justify-content-center ">
-                                    <p class="mb-0 fw-bold">Nombre: terminar maquetación section aside</p>
-                                    <p class="mb-0">Encargado: Wilson Austen</p>
-                                    <p class="mb-0">Prioridad: Urgente e importante</p>
-                                </div>
-                            </div>
-
-                            <div class="task d-flex justify-content-start rounded-top me-2 mb-2  " draggable="true">
-                                <!-- <img src="./img/svg/task-icon.svg" class="task-icon align-self-center me-2"> -->
-                                <div class="desc-task d-flex flex-column justify-content-center ">
-                                    <p class="mb-0 fw-bold">Nombre: solucionar bug en el login</p>
-                                    <p class="mb-0">Encargado: Hanayama Kiryu</p>
-                                    <p class="mb-0">Prioridad: Urgente e importante</p>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -207,7 +251,7 @@
                     <div>
                         <h4 class="text-center title-tasks">Tareas Realizadas</h4>
                         <div class="container-task taskHecho me-2 p-1" id="taskHecho">
-                            <button class="btn-task">
+                            <button class="btn-task abrir-form">
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
                                 Agregar Tarea
                             </button>

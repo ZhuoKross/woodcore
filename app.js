@@ -39,25 +39,17 @@ app.use(express.urlencoded({extended:false}));
 
 // rutas
 app.get("/", taskController.homePage)
-
-
 app.get("/dashboard", taskController.mostrarDashboard)
-
 app.get("/task-info", taskController.mostrarDatosTareas)
-
 app.get("/add-project", taskController.addProjectForm)
-
 app.get("/add-task", function(req, res){
     res.sendFile(path.resolve("views/tareas.html"))
 })
-
 app.get("/login", taskController.mostrarLogin)
-
-
 app.get("/sign-up", taskController.mostrarRegistro)
-
-
 app.get("/recuperar", taskController.recuperarContraseña)
+app.post("/api/add-task", taskController.addTask);
+
 
 
 // Para hacer la ruta hacia el form de tareas y crear la funcionalidad 

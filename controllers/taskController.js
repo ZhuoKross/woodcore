@@ -1,5 +1,6 @@
 const path = require("path");
 const tareas = require("../model/tareas")
+const conexion = require("../model/conexion.js");
 
 // const tareasProcesadas = tareas.mostrarTareas
 
@@ -46,7 +47,31 @@ const mostrarProjectos = function(req, res){}
 
 const addTaskForm = function(req, res){}
 
-const addTask = function(req, res){}
+
+// controlador para el formulario de crear tareas
+async function addTask(req, res){
+    // prueba de código de que los datos se adquirieron desde el front end
+    // console.log(req.body);
+
+    const nombre = req.body.nombre
+    const prioridad = req.body.prioridad
+    const descripcion = req.body.descripcion
+    const estado = req.body.estado
+    const encargado = req.body.encargado
+    const sprint = req.body.sprint
+    
+    let registrarTarea = "INSERT INTO tareas_prueba (nombre_tarea, prioridad, resumen, estado, encargado_tarea, sprint_tarea) VALUES ('"+nombre+"', '"+prioridad+"', '"+descripcion+"', '"+estado+"', '"+encargado+"', '"+sprint+"')";
+
+    conexion.query(registrarTarea, function(err){
+        if(err){
+            throw err
+        }else{
+            console.log("datos almacenados correctamente")
+        }
+    })
+}
+
+
 
 const addProjectForm = function(req, res){
     res.sendfile(path.resolve("views/creacion_proyectos.html"))
