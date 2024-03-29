@@ -39,30 +39,6 @@
                 </li>
 
 
-                <li class="nav__item">
-                    <figure class="nav__figure">
-                        <img src="/img/svg/add-project.svg" class="nav__img">
-                    </figure>
-
-                    <article class="nav-show">
-                        <a class="nav-name" href="/add-project">
-                            Crear Projecto
-                        </a>
-                    </article>
-                </li>
-
-
-                <li class="nav__item">
-                    <figure class="nav__figure">
-                        <img src="/img/svg/add-task.svg" class="nav__img">
-                    </figure>
-
-                    <article class="nav-show">
-                        <a class="nav-name" href="/add-task">
-                            Crear Tarea
-                        </a>
-                    </article>
-                </li>
 
                 <li class="nav__item">
                     <figure class="nav__figure">
@@ -117,18 +93,103 @@
 
         <!-- contenedor principal -->
         <section class="container-main-content p-0">
-            <!-- Sección de dashboard y nav -->
+            <!-- Sección de nav del dashboard -->
             <article class="container-d-n order-2 container-content-dashboard">
                 <div class="d-flex justify-content-center">
-                    <nav class="navbar w-75 rounded-pill ms-3 mt-2 ">
+                    <nav class="navbar d-flex  justify-content-between w-75 rounded-pill ms-3 mt-2 ">
                         <ul class="d-flex align-items-center mb-0 nav__list--dashboard">
-                            <li class="nav-item me-3"><a class="nav-link " href="#" id="crearProyectos"> Ver
+                            <li class="nav-item me-3"><a class="nav-link " href="#" id="verProyectos"> Ver
                                     proyectos</a></li>
-                            <li class="nav-item"><a class="nav-link " href="#" id="crearTareas"> Ver
+                            <li class="nav-item"><a class="nav-link " href="#" id="verTareas"> Ver
                                     tareas </a></li>
                         </ul>
+                        <div class="container-btn-crear-proyecto w-25 d-flex justify-content-end">
+                            <a href="#" title="Crear un proyecto" id="abrir-form-proyecto">
+                                <img src="img/svg/add-project-nav.svg" alt="Crear Proyecto" class="icon-task-nav me-3">
+                            </a>
+                        </div>
                     </nav>
                 </div>
+
+
+                <!-- FORM PARA LA CREACIÓN DE PROYECTOS -->
+
+                <dialog id="modal-form-project">
+                    <h2 class="text-dark">Añadir un Proyecto</h2>
+                    <form class="needs-validation" onsubmit="return validarRegistro()"
+                        id="form-project">
+                        <!-- Nombre -->
+                        <div class="mb-2">
+                            <div class="col-sm-9 input-group border-bottom border-dark">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
+                                    id="InputNombre" placeholder="Nombre" minlength="10" required>
+                            </div>
+                        </div>
+
+                        <!-- Prioridad-->
+                        <div class="mb-3">
+                            <label for="Prioridad " class="form-label font-weight-bold">Prioridad :</label>
+                            <div class="col-sm-9 input-group">
+                                <select name="Prioridad " class="form-select" id="Prioridad " required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="Urgente e importante">Urgente e importante</option>
+                                    <option value="Importante pero no urgente">Importante pero no urgente</option>
+                                    <option value="Urgente pero no importante">Urgente pero no importante</option>
+                                    <option value="Ni importante ni urgente">Ni urgente ni importante</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Sprint -->
+                        <div class="mb-3">
+                            <label for="Sprint" class="form-label font-weight-bold">Sprint:</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="date" name="Sprint" class="form-control bg-dark-x border-0 flex-grow-1"
+                                    id="Sprint" required>
+                            </div>
+                        </div>
+
+                        <!-- Encargado del proyecto -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group border-bottom border-dark">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
+                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6"
+                                    required>
+                            </div>
+                        </div>
+
+                        <!-- Miembros del proyecto -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group border-bottom border-dark">
+                                <input type="text" name="Miembros del proyecto"
+                                    class="form-control bg-dark-x border-0 flex-grow-1 mb-2" id="Miembros del proyecto"
+                                    placeholder="Miembros del proyecto" minlength="6" required>
+                            </div>
+                        </div>
+
+                        <!-- Roles del equipo -->
+                        <div class="mb-3">
+                            <div class="col-sm-9 input-group border-bottom border-dark">
+                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
+                                    id="Roles del equipo" placeholder="Roles del equipo" minlength="6" required>
+                            </div>
+
+                        </div>
+
+                        <!-- boton de crear proyecto-->
+                        <button type="submit" class="btn bg-black w-100 text-white mb-1" id="btnAlerta">Crear
+                            Proyecto</button>
+
+                    </form>
+                    <button class=" mb-2 border-0 w-100 d-flex align-items-center" id="cerrar-form-proyecto">
+                        <a class="btn flex-grow-1 mx-2">Volver</a>
+                    </button>
+
+                </dialog>
+
+
+
+
 
                 <!-- Form para la creación de tareas -->
                 <dialog id="modal-form">
@@ -140,8 +201,9 @@
                             <!-- Nombre tarea -->
                             <div class="form-task-section-1 d-flex flex-column me-4 w-100">
                                 <label for="nombre_task"> Nombre de la tarea:</label>
-                                <input type="text" id="nombre_task" name="nombre_task" class="mb-3 form-control border-0">
-        
+                                <input type="text" id="nombre_task" name="nombre_task"
+                                    class="mb-3 form-control border-0">
+
                                 <!-- Prioridad de la tarea -->
                                 <label for="prioridad"> Prioridad de la tarea:</label>
                                 <select name="prioridad" id="prioridad" class="form-select">
@@ -150,15 +212,15 @@
                                     <option value="Urgente pero no importante">Urgente pero no importante</option>
                                     <option value="Ni urgente ni importante">Ni urgente ni importante</option>
                                 </select>
-        
+
                                 <!-- Descripción de la tarea -->
                                 <div class="des-task mb-3 mt-3">
                                     <label for="des_task">Descripción de la tarea:</label>
-        
+
                                     <textarea id="des_task" cols="30" rows="10" name="des_task"></textarea>
                                 </div>
                             </div>
-        
+
                             <div class="form-task-section-2 d-flex flex-column w-100">
                                 <!-- estado de la tarea -->
                                 <label for="estado"> Estado de la tarea:</label>
@@ -167,17 +229,17 @@
                                     <option value="en proceso">En proceso</option>
                                     <option value="Realizada">Realizada</option>
                                 </select>
-        
+
                                 <!-- Encargado -->
                                 <label for="encargado"> Encargado de la tarea:</label>
                                 <input type="text" id="encargado" name="encargado" class="form-control border-0">
-        
+
                                 <!-- fecha límite de la tarea -->
                                 <label for="sprint_task"> Fecha límite:</label>
                                 <input type="date" id="sprint_task" name="sprint_task" class="form-control">
                             </div>
                         </div>
-        
+
                         <!-- Botones del form -->
                         <div class="btns-tasks d-inline-flex justify-content-center">
                             <button class="me-4 btn btn-lg">Crear tarea</button>
@@ -192,7 +254,7 @@
 
                 <!-- Parte del dashboard -->
                 <h2 class="text-center mb-3">Proyecto X</h2>
-                <div class="container-dashboard d-flex" id="container-dashboard">
+                <div class="container-dashboard" id="container-dashboard">
                     <div>
                         <h4 class="text-center title-tasks"> Tareas sin hacer</h4>
                         <div class="container-task sinHacer me-2 ms-3 p-1" id="sinHacer">
@@ -211,7 +273,8 @@
                                 <img src="../img/svg/plus-square.svg" class="icon-btn">
                                 Agregar Tarea
                             </button>
-                            <div class="task d-flex flex-column flex-wrap align-content-between rounded-top me-2 mb-2 " draggable="true">
+                            <div class="task d-flex flex-column flex-wrap align-content-between rounded-top me-2 mb-2 "
+                                draggable="true">
                                 <!-- <img src="../img/svg/task-icon.svg" class="task-icon align-self-center me-2"> -->
                                 <div class="container-heading-task d-flex w-100  align-items-center">
                                     <img src="../img/persona4.jpg" class="rounded-circle nav__img--avatar ms-2">
@@ -226,10 +289,15 @@
                                 </div>
                                 <div class="desc-task d-flex flex-column justify-content-center ms-2">
                                     <div class="d-flex mb-2 mt-2">
-                                        <p class="mb-0 fw-bold fs-5 mt-3 name-task">Hacer issue de drag and drop y además terminar el hover</p>
-                                        <p class="mb-0 text-wrap bg-success rounded-pill text-center state ms-1 me-1 flex-shrink-0 align-self-center">activa</p>
+                                        <p class="mb-0 fw-bold fs-5 mt-3 name-task">Hacer issue de drag and drop y
+                                            además terminar el hover</p>
+                                        <p
+                                            class="mb-0 text-wrap bg-success rounded-pill text-center state ms-1 me-1 flex-shrink-0 align-self-center">
+                                            activa</p>
                                     </div>
-                                    <p class="mb-2"><b>Descripción:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat beatae tempore a quaerat harum voluptatem unde vel, cupiditate  </p>
+                                    <p class="mb-2"><b>Descripción:</b> Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Repellat beatae tempore a quaerat harum voluptatem unde vel,
+                                        cupiditate </p>
                                     <div class="container-prioridad d-flex">
                                         <p class="mb-1 me-2"><b>Prioridad:</b></p>
                                         <p class="category text-wrap w-50 rounded-pill text-center mb-0">Urgente e

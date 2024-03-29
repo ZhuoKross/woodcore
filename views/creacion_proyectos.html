@@ -49,18 +49,6 @@
 
                 <li class="nav__item">
                     <figure class="nav__figure">
-                        <img src="/img/svg/add-task.svg" class="nav__img">
-                    </figure>
-
-                    <article class="nav-show">
-                        <a class="nav-name" href="/add-task">
-                            Crear Tarea
-                        </a>
-                    </article>
-                </li>
-
-                <li class="nav__item">
-                    <figure class="nav__figure">
                         <img src="/img/svg/setting.svg" class="nav__img">
                     </figure>
 
@@ -112,82 +100,7 @@
             <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100">
                 <div class="px-lg-5 py-lg-4 p-4 w-100 align-self-center">
                     <h1 class="font-weight-bold mb-4">Crear proyecto</h1>
-                    <form class="needs-validation" action="/validar" method="post" onsubmit="return validarRegistro()">
-                        <!-- Nombre -->
-                        <div class="mb-2">
-                            <div class="col-sm-9 input-group">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
-                                    id="InputNombre" placeholder="Nombre" minlength="10" required>
-                                <span class="input-group-text"><i
-                                        class="bi bi-person-vcard input-group-text"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Prioridad-->
-                        <div class="mb-3">
-                            <label for="Prioridad " class="form-label font-weight-bold">Prioridad :</label>
-                            <div class="col-sm-9 input-group">
-                                <select name="Prioridad " class="form-select" id="Prioridad " required>
-                                    <option value="">Seleccionar</option>
-                                    <option value="value-1">Urgentes e importantes</option>
-                                    <option value="value-2">Importantes pero no urgente</option>
-                                    <option value="value-3">Urgente pero no importante</option>
-                                    <option value="value-4">Ni urgente ni importante</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Sprint -->
-                        <div class="mb-3">
-                            <label for="Sprint" class="form-label font-weight-bold">Sprint:</label>
-                            <div class="col-sm-9 input-group">
-                                <input type="date" name="Sprint" class="form-control bg-dark-x border-0 flex-grow-1"
-                                    id="Sprint" required>
-                            </div>
-                        </div>
-
-                        <!-- Encargado del proyecto -->
-                        <div class="mb-3">
-                            <div class="col-sm-9 input-group">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
-                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6"
-                                    required>
-                                <span class="input-group-text"><i
-                                        class="bi bi-person-vcard input-group-text"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Miembros del proyecto -->
-                        <div class="mb-3">
-                            <div class="col-sm-9 input-group">
-                                <input type="text" name="Miembros del proyecto"
-                                    class="form-control bg-dark-x border-0 flex-grow-1" id="Miembros del proyecto"
-                                    placeholder="Miembros del proyecto" minlength="6" required>
-                                <span class="input-group-text"><i
-                                        class="bi bi-person-vcard input-group-text"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Roles del equipo -->
-                        <div class="mb-3">
-                            <div class="col-sm-9 input-group">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1"
-                                    id="Roles del equipo" placeholder="Roles del equipo" minlength="6" required>
-                                <span class="input-group-text"><i
-                                        class="bi bi-person-add input-group-text ms-2"></i></span>
-                            </div>
-
-                        </div>
-
-                        <!-- boton de Registrarse -->
-                        <button type="submit" class="btn bg-black w-100 text-white mb-1" id="btnAlerta">Crear
-                            Proyecto</button>
-
-                    </form>
-                    <div class="d-flex justify-content-around mb-2">
-                        <a href="/dashboard" class="btn btn-outline-light flex-grow-1 mx-2"><i
-                                class="bi bi-arrow-left-circle lead mr-2"></i>Volver a la mesa de trabajo</a>
-                    </div>
+                    
                 </div>
             </div>
         </div>

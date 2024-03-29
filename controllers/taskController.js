@@ -45,7 +45,6 @@ const recuperarContraseña = function(req, res){
 
 const mostrarProjectos = function(req, res){}
 
-const addTaskForm = function(req, res){}
 
 
 // controlador para el formulario de crear tareas
@@ -72,12 +71,39 @@ async function addTask(req, res){
 }
 
 
+// controlador para el form de crear proyectos 
+const addProject = function(req, res){
+    // prueba de código de que los datos se adquirieron desde el front end
+    // console.log(req.body);
+
+    const nombre_proyecto = req.body.nombre_proyecto;
+    const prioridad = req.body.prioridad;
+    const sprint = req.body.sprint;
+    const encargado_proyecto = req.body.encargado_proyecto;
+    const miembros_proyecto = req.body.miembros_equipo;
+    const roles_proyecto = req.body.roles_equipo;
+
+
+    let registrarProyecto = "INSERT INTO proyecto_prueba (nombre_proyecto, prioridad, sprint, encargado_proyecto, miembros_proyecto, roles_proyecto) VALUES ('"+nombre_proyecto+"', '"+prioridad+"', '"+sprint+"', '"+encargado_proyecto+"', '"+miembros_proyecto+"', '"+roles_proyecto+"')";
+
+    conexion.query(registrarProyecto, function(err){
+        if(err){
+            throw err
+        }else{
+            console.log("datos almacenados correctamente")
+        }
+    })
+
+
+}
+
+
+
 
 const addProjectForm = function(req, res){
     res.sendfile(path.resolve("views/creacion_proyectos.html"))
 }
 
-const addProject = function(req, res){}
 
 
 module.exports = {
@@ -85,7 +111,6 @@ module.exports = {
     mostrarDatosTareas,
     mostrarDashboard,
     mostrarProjectos,
-    addTaskForm,
     addTask,
     addProjectForm,
     addProject,

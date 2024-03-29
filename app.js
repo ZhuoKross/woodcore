@@ -49,6 +49,7 @@ app.get("/login", taskController.mostrarLogin)
 app.get("/sign-up", taskController.mostrarRegistro)
 app.get("/recuperar", taskController.recuperarContraseña)
 app.post("/api/add-task", taskController.addTask);
+app.post("/api/add-project", taskController.addProject);
 
 
 
@@ -74,6 +75,10 @@ app.post("/add-task", function(req, res){
         }
     })
 })
+
+
+
+
 
 
 // Para hacer la ruta hacia el form de proyectos y crear la funcionalidad

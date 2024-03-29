@@ -8,7 +8,8 @@ const linkTareas = document.getElementById("crearTareas");
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////
+// FUNCIONALIDAD PARA OBTENER LAS TAREAS DE LA BASE DE DATOS Y MOSTRARLAS EN PANTALLA
 async function fetchTareas() {
     let res = await fetch("/task-info")
         .then(tareas => tareas.json())
@@ -165,6 +166,10 @@ async function fetchTareas() {
 fetchTareas()
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// FUNCIONALIDAD PARA CREAR EL EFECTO DE DRAG AND DROP EN CADA UNA DE LAS TAREAS
+
 async function obtenerYCrearEventosTareas() {
     try {
         const tareas = document.querySelectorAll(".task");
@@ -242,6 +247,8 @@ async function obtenerYCrearEventosTareas() {
 }
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
 // FUNCIONALIDAD DE LA BARRA DE PROGRESO DE LAS TAREAS
 
 async function estadosTareas() {
@@ -297,19 +304,19 @@ async function estadosTareas() {
             }
 
         } else if (claseHaciendo === true) {
-            if (claseBgPrimaryThirdState === true){
+            if (claseBgPrimaryThirdState === true) {
                 thirdState.classList.remove("bg-primary");
 
-            }else{
+            } else {
                 secondState.classList.add("bg-primary");
-                
+
             }
-        } else if(claseSinHacer === true){
-            console.log(claseBgPrimarySecondState)
-            if(claseBgPrimarySecondState === true || claseBgPrimaryThirdState === true){
+        } else if (claseSinHacer === true) {
+
+            if (claseBgPrimarySecondState === true || claseBgPrimaryThirdState === true) {
                 thirdState.classList.remove("bg-primary");
                 secondState.classList.remove("bg-primary");
-            }else{
+            } else {
                 firstState.classList.add("bg-primary");
             }
         }
@@ -326,6 +333,8 @@ async function estadosTareas() {
 
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
 // Funcionalidad pra el form de crear tareas
 
 const abrirModalForm = document.querySelectorAll(".abrir-form");
@@ -373,6 +382,83 @@ modalForm.forEach(form => {
 
     })
 })
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Funcionalidad para crear el form de crear proyectos
+
+const abrirModalFormProject = document.getElementById("abrir-form-proyecto");
+const cerrarModalFormProject = document.getElementById("cerrar-form-proyecto");
+const modalFormProject = document.getElementById("modal-form-project");
+const FormProject = document.getElementById("form-project");
+
+// Eventos para cerrar y abir el form
+abrirModalFormProject.addEventListener("click", function(e){
+    modalFormProject.showModal();
+})
+
+cerrarModalFormProject.addEventListener("click", function(){
+    modalFormProject.close()
+})
+
+// fetch para enviar los datos a la base de datos
+
+FormProject.addEventListener("submit", async (e) =>{
+    // e.preventDefault()
+    // console.log(e);
+    
+
+    const res = await fetch("http://localhost:3000/api/add-project", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre_proyecto: e.target.children[0].children[0].children.Nombre.value,
+                prioridad: e.target.children[1].children[1].children[0].value,
+                sprint: e.target.children[2].children[1].children[0].value,
+                encargado_proyecto: e.target.children[3].children[0].children[0].value,
+                miembros_equipo: e.target.children[4].children[0].children[0].value,
+                roles_equipo: e.target.children[5].children[0].children[0].value,
+            })
+        })
+    
+    // scrum master, dev team, dev team, dev team
+})
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Funcionalidad para la partel nav y visualización de los proyectos
+
+const verTareas = document.getElementById("verTareas");
+const verProyectos = document.getElementById("verProyectos");
+const containerDashboard = document.getElementById("container-dashboard");
+// const stringClasesContainerDashboard = containerDashboard.className;
+// const arrayClasesContainerDashboard = stringClasesContainerDashboard.split(" ");
+// const claseDFlex = arrayClasesContainerDashboard.includes("d-flex");
+
+// console.log(ContainerDashboard);
+
+verProyectos.addEventListener("click", function (e) {
+
+    containerDashboard.style.display = "none";
+
+    console.log(containerDashboard);
+
+})
+
+
+verTareas.addEventListener("click", function(){
+    containerDashboard.style.display = "flex";
+
+    console.log(containerDashboard);
+})
+
+
+
+
 
 
 
