@@ -9,8 +9,8 @@ const linkTareas = document.getElementById("crearTareas");
 
 
 
-function fetchTareas() {
-    fetch("/task-info")
+async function fetchTareas() {
+    let res = await fetch("/task-info")
         .then(tareas => tareas.json())
         .then(tareas => {
 
@@ -29,7 +29,7 @@ function fetchTareas() {
                 let año = fecha.getFullYear();
                 let mes = fecha.getMonth() + 1;
                 let dia = fecha.getDate();
-                
+
                 const sprintFormateado = `${dia}/${mes}/${año}`;
 
 
@@ -40,7 +40,7 @@ function fetchTareas() {
 
                 // Contenedor padre principal de la tarea
                 const contenedorTarea = document.createElement("div");
-                
+
                 // Parte del head de la tarea
                 const containerHeadTask = document.createElement("div");
                 const imgEncargado = document.createElement("img");
@@ -74,11 +74,11 @@ function fetchTareas() {
                 // Definiendo los atributos y clases para caada elemento
                 contenedorTarea.classList.add("task", "d-flex", "flex-column", "rounded-top", "me-2", "mb-2");
                 contenedorTarea.setAttribute("draggable", true);
-                
+
                 // Definición de las clases del container head de la tarea
-                containerHeadTask.classList.add("container-heading-task", "d-flex", "w-100",  "align-items-center");
+                containerHeadTask.classList.add("container-heading-task", "d-flex", "w-100", "align-items-center");
                 imgEncargado.classList.add("rounded-circle", "nav__img--avatar", "ms-2");
-                containerNombre.classList.add("d-flex", "flex-column", "ms-1", "align-items-start","w-50");
+                containerNombre.classList.add("d-flex", "flex-column", "ms-1", "align-items-start", "w-50");
                 nombreEncargado.classList.add("mb-0", "pt-2", "fw-bold");
                 legendEncargado.classList.add("t-encargado");
                 containerSprintTask.classList.add("d-flex", "flex-column", "align-items-end", "me-3", "w-50");
@@ -98,12 +98,12 @@ function fetchTareas() {
 
                 // Definición de las clases de los estados de progreso de las tareas
                 containerStates.classList.add("states", "d-flex", "justify-content-between", "align-items-end", "ms-3", "mt-3");
-                firstState.classList.add("first-state", "rounded-pill", "bg-primary", "w-50", "me-1");
-                secondtState.classList.add("second-state", "rounded-pill", "bg-primary", "w-50", "me-1");
-                thirdtState.classList.add("third-state", "rounded-pill", "bg-secondary", "w-50");
+                firstState.classList.add("first-state", "rounded-pill", "w-50", "me-1");
+                secondtState.classList.add("second-state", "rounded-pill", "w-50", "me-1");
+                thirdtState.classList.add("third-state", "rounded-pill", "w-50");
 
 
-            // Agregando el contenido de las tareas
+                // Agregando el contenido de las tareas
                 // Agregando el contenido a la parte del head de la tarea
                 imgEncargado.setAttribute("src", "../img/persona06.jpg");
                 nombreEncargado.innerText = encargado;
@@ -118,12 +118,12 @@ function fetchTareas() {
                 descripcionTarea.innerHTML = descripcion;
                 boldTextPrioridad.innerText = "Prioridad:";
                 category.innerText = prioridad;
-                
-            // Agregando los elementos a la tarea y al DOM
+
+                // Agregando los elementos a la tarea y al DOM
                 contenedorTarea.appendChild(containerHeadTask);
                 contenedorTarea.appendChild(containerContenidoTarea);
                 contenedorTarea.appendChild(containerStates);
-                
+
                 // Agregando los elementos al head de la tarea                
                 containerHeadTask.appendChild(imgEncargado);
                 containerHeadTask.appendChild(containerNombre);
@@ -137,7 +137,7 @@ function fetchTareas() {
                 containerContenidoTarea.appendChild(containerNombreTarea);
                 containerNombreTarea.appendChild(nombreTarea);
                 containerNombreTarea.appendChild(estadoActividad);
-                descripcionTarea.insertAdjacentElement("afterbegin",boldTextDescripcion);
+                descripcionTarea.insertAdjacentElement("afterbegin", boldTextDescripcion);
                 containerContenidoTarea.appendChild(descripcionTarea);
                 containerContenidoTarea.appendChild(containerPrioridad);
                 legendPrioridadTarea.appendChild(boldTextPrioridad);
@@ -155,6 +155,7 @@ function fetchTareas() {
             });
 
             obtenerYCrearEventosTareas()
+            estadosTareas()
         })
         .catch(err => console.log("error al cargar las tareas: ", err))
 
@@ -172,63 +173,66 @@ async function obtenerYCrearEventosTareas() {
 
         // Pruba de código
         // console.log(arrayTareas);
-        
+
         // total de tareas
         const tareasTotales = arrayTareas.length;
-        
+
         //  Asignando el data id a cada una de las tareas del arrayTareas
-        arrayTareas.forEach((tarea, indice)=>{
+        arrayTareas.forEach((tarea, indice) => {
             tarea.id = indice;
         })
-        
+
         // Código para hacer que las tareas sean drag and drop 
         // para cuando inicia el arrastre en cada uno de los contenedores y para indentificar que tarea se agrega a qué container
-        tareaSinHacer.addEventListener("dragstart", function(e){
+        tareaSinHacer.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("id", e.target.id);
         })
-        
-        tareasEnProceso.addEventListener("dragstart", function(e){
+
+        tareasEnProceso.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("id", e.target.id);
 
         })
 
-        tareasRealizadas.addEventListener("dragstart", function(e){
+        tareasRealizadas.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("id", e.target.id);
 
         })
 
 
         //  para los eventos dragover de los contenedores
-        tareaSinHacer.addEventListener("dragover", function(e){
+        tareaSinHacer.addEventListener("dragover", function (e) {
             e.preventDefault();
         })
-        tareasEnProceso.addEventListener("dragover", function(e){
+        tareasEnProceso.addEventListener("dragover", function (e) {
             e.preventDefault();
         })
-        tareasRealizadas.addEventListener("dragover", function(e){
+        tareasRealizadas.addEventListener("dragover", function (e) {
             e.preventDefault();
         })
 
-        
+
         // para los eventos drop de los contenedores
-        tareaSinHacer.addEventListener("drop", function(e){
+        tareaSinHacer.addEventListener("drop", function (e) {
             const id = e.dataTransfer.getData("id");
             e.target.appendChild(document.getElementById(id));
-            console.log(id);
+            // console.log(id);
+            estadosTareas()
         })
-        
-        tareasEnProceso.addEventListener("drop", function(e){
+
+        tareasEnProceso.addEventListener("drop", function (e) {
             const id = e.dataTransfer.getData("id");
             e.target.appendChild(document.getElementById(id));
-            console.log(id);
+            // console.log(id);
+            estadosTareas()
         })
-        
-        tareasRealizadas.addEventListener("drop", function(e){
+
+        tareasRealizadas.addEventListener("drop", function (e) {
             const id = e.dataTransfer.getData("id");
             e.target.appendChild(document.getElementById(id));
-            console.log(id);
+            // console.log(id);
+            estadosTareas()
         })
-        
+
 
 
 
@@ -238,40 +242,125 @@ async function obtenerYCrearEventosTareas() {
 }
 
 
+// FUNCIONALIDAD DE LA BARRA DE PROGRESO DE LAS TAREAS
+
+async function estadosTareas() {
+    const tasks = document.querySelectorAll(".task");
+    const containerTareasSinHacer = document.querySelector(".sinHacer");
+    const containerTareasEnProceso = document.querySelector(".Haciendo");
+    const containerTareasRealizadas = document.querySelector(".taskHecho");
+
+    let elementosHijosSinHacer = containerTareasSinHacer.children;
+    let elementosHijosHaciendo = containerTareasEnProceso.children;
+    let elementosHijosRealizadas = containerTareasRealizadas.children;
+
+
+    tasks.forEach((tarea, indice) => {
+        // Prueba de código para recorrer cada tarea
+        // console.log(tarea.children[2].children)
+
+        // Adquirir los elementos padre y su clase
+        const elementoPadre = tarea.parentNode;
+        const stringClasesElementoPadre = elementoPadre.className;
+        const arrayClasesElementoPadre = stringClasesElementoPadre.split(" ");
+        //para las clases de los elementos padre
+        const claseSinHacer = arrayClasesElementoPadre.includes("sinHacer");
+        const claseHaciendo = arrayClasesElementoPadre.includes("Haciendo");
+        const claseRealizada = arrayClasesElementoPadre.includes("taskHecho");
+        // para los estados de cada una de las tareas
+        const firstState = tarea.children[2].children[0];
+        const secondState = tarea.children[2].children[1];
+        const thirdState = tarea.children[2].children[2];
+        //para las clases de cada una de las clases de los estados de la tarea
+        const stringClasesFirstState = firstState.className;
+        const stringClasesSecondtState = secondState.className;
+        const stringClasesThirdtState = thirdState.className;
+        //conversión de las clases de los estados a array
+        const arrayClasesFirstState = stringClasesFirstState.split(" ");
+        const arrayClasesSecondState = stringClasesSecondtState.split(" ");
+        const arrayClasesThirdState = stringClasesThirdtState.split(" ");
+        // Para verificar que existe la clase dentro del array de clases de cada uno de los estados
+        const claseBgPrimaryFirstState = arrayClasesFirstState.includes("bg-primary");
+        const claseBgPrimarySecondState = arrayClasesSecondState.includes("bg-primary");
+        const claseBgPrimaryThirdState = arrayClasesThirdState.includes("bg-primary");
+
+
+
+
+        // Hacer la validación para aplicar el fondo a cada uno de los estados en base a si contiene o no la clase "bg-primary";
+        if (claseRealizada === true) {
+            if (claseBgPrimaryThirdState === true & claseBgPrimarySecondState === true) {
+                thirdState.classList.remove("bg-primary")
+            } else {
+                thirdState.classList.add("bg-primary");
+                secondState.classList.add("bg-primary")
+            }
+
+        } else if (claseHaciendo === true) {
+            if (claseBgPrimaryThirdState === true){
+                thirdState.classList.remove("bg-primary");
+
+            }else{
+                secondState.classList.add("bg-primary");
+                
+            }
+        } else if(claseSinHacer === true){
+            console.log(claseBgPrimarySecondState)
+            if(claseBgPrimarySecondState === true || claseBgPrimaryThirdState === true){
+                thirdState.classList.remove("bg-primary");
+                secondState.classList.remove("bg-primary");
+            }else{
+                firstState.classList.add("bg-primary");
+            }
+        }
+
+
+
+    })
+
+    // Prueba de código para verificar la obtención de las tareas
+    // console.log(tasks)
+}
+
+
+
+
+
 // Funcionalidad pra el form de crear tareas
+
 const abrirModalForm = document.querySelectorAll(".abrir-form");
 const cerrarModalForm = document.querySelectorAll("#cerrar-form");
 const modalForm = document.querySelectorAll("#modal-form")
 
-modalForm.forEach(form =>{
-    const Formtask = form; 
-    
-    abrirModalForm.forEach(elemento =>{
-        elemento.addEventListener("click", ()=>{
-            Formtask.showModal();
+cerrarModalForm.forEach(elemento => {
+    modalForm.forEach(form => {
+        const Formtask = form;
+
+        abrirModalForm.forEach(elemento => {
+            elemento.addEventListener("click", () => {
+                Formtask.showModal();
+            })
         })
-    })
-    
-    cerrarModalForm.forEach(elemento =>{
-        elemento.addEventListener("click", ()=>{
+
+        elemento.addEventListener("click", () => {
             Formtask.close()
         })
     })
 })
 
-// 
 
-modalForm.forEach( form =>{
+// para enviar los datos al backend
+modalForm.forEach(form => {
     const formCreatTask = form;
-    
-    formCreatTask.addEventListener("submit", async (e)=>{
-        e.preventDefault()
+
+    formCreatTask.addEventListener("submit", async (e) => {
+        // e.preventDefault()
         const res = await fetch("http://localhost:3000/api/add-task", {
             method: "POST",
-            headers:{
+            headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 nombre: e.target.children[0].children[0].children.nombre_task.value,
                 prioridad: e.target.children[0].children[0].children.prioridad.value,
                 descripcion: e.target.children[0].children[0].children[4].children.des_task.value,
@@ -284,6 +373,8 @@ modalForm.forEach( form =>{
 
     })
 })
+
+
 
 
 
