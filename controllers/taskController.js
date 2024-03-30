@@ -1,5 +1,6 @@
 const path = require("path");
-const tareas = require("../model/tareas")
+const tareas = require("../model/tareas");
+const proyectos = require("../model/proyectos.js");
 const conexion = require("../model/conexion.js");
 
 // const tareasProcesadas = tareas.mostrarTareas
@@ -43,7 +44,15 @@ const recuperarContraseña = function(req, res){
 //     res.json(tareasProcesadas);
 // }
 
-const mostrarProjectos = function(req, res){}
+const mostrarProjectos = function(req, res){
+    proyectos.mostrarProyectos()
+    .then(proyectosProcesados =>{
+        res.json(proyectosProcesados);
+    })
+    .catch(err =>{
+        console.error("Error al obtener los proyectos", err);
+    })
+}
 
 
 

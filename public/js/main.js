@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 const tareaSinHacer = document.getElementById("sinHacer");
 const tareasEnProceso = document.getElementById("Haciendo");
 const tareasRealizadas = document.getElementById("taskHecho");
@@ -443,20 +445,150 @@ const titleDashboard = document.getElementById("title-dashboard");
 
 // console.log(ContainerDashboard);
 
-
+// contenedor principal de cada proyecto
 const containerProject = document.createElement("div");
-const imgAsideCover = document.createElement("img");
+// contenedor para el img del aside
+const containerImgCover = document.createElement("div");
+const content = document.createElement("div");
+const textImgCover = document.createElement("a");
+// container par el contenedor del progreso, nombre y descripción
 const containerInfoProject = document.createElement("div");
+// container de los avatars de las personas 
 const containerEquipo = document.createElement("div");
+// container de avatar individual
 const containerPersona = document.createElement("div");
 const imgPersona = document.createElement("img");
 const legendPersona = document.createElement("p");
+
+// container para la descripción, progreso, nombre y estado
 const containerMainInfo = document.createElement("div");
-const containerStateProject = document.createElement("div");
+// container para el nobre y estado del proyecto
+const containerNameProject = document.createElement("div");
+const nameProject = document.createElement("p");
 const stateProject = document.createElement("p");
+
+// container para la descripción del proyecto
+const containerDescProject = document.createElement("div");
+const descProject = document.createElement("p");
+
+// container para el progreso de cada proyecto
 const containerProgressProject = document.createElement("div");
-const legendProgres = document.createElement("p");
+const legendProgress = document.createElement("p");
 const progress = document.createElement("div");
+
+
+// FETCH PARA OBTENER LOS PROYECTOS E INSERCIÓN EN EL DOM
+async function mostrarProjectos(){
+    const res = await fetch("/projects-info")
+    .then(proyectos => proyectos.json())
+    .then(proyectos =>{
+
+        proyectos.forEach(proyecto =>{
+
+            // creación de las propiedades de cada proyecto
+            const nombre = proyecto.nombre_proyecto;
+            const prioridad = proyecto.prioridad;
+            const sprint = proyecto.sprint;
+            const encargao = proyecto.encargado_proyecto;
+            const miembros = proyecto.miembros_proyecto;
+            const roles = proyecto.roles_proyecto;
+
+            // definiendo las clases de cada elemento de cada proyecto
+            containerProject.classList.add("container-project", "d-flex", "ms-4", "mt-3");
+            // para las clases del contenedor del img del aside
+            containerImgCover.classList.add("container-img-cover");
+            content.classList.add("content");
+            textImgCover.classList.add("text-img-cover");
+            textImgCover.setAttribute("href", "#")
+
+            // para el container con la info de cada proyecto
+            containerInfoProject.classList.add("container-info-project");
+            containerEquipo.classList.add("container-equipo", "d-flex", "justify-content-start", "ms-2");
+            containerPersona.classList.add("contaiener-persona", "d-flex", "flex-column", "align-items-center", "mt-2", "me-2");
+            imgPersona.classList.add("img-persona", "rounded-circle");
+            legendPersona.classList.add("legend-persona", "mb-0");
+            // para el container que contiene el estado, descripción y nombre del proyecto
+            containerMainInfo.classList.add("container-main-info", "d-flex", "flex-column", "align-content-between", "me-1", "ms-2", "mt-1");
+            containerNameProject.classList.add("container-name-project", "d-flex");
+            nameProject.classList.add("fs-4", "fw-bold", "name-project", "mb-0");
+            stateProject.classList.add("state-project", "mb-0","text-wrap", "bg-success", "rounded-pill", "text-center", "state", "ms-1", "me-1", "flex-shrink-0", "align-self-center");
+            // Para el container que contiene la descripción
+            containerDescProject.classList.add("container-desc-project");
+            descProject.classList.add("desc-project", "mb-0");
+            // para el container que contiene el progreso del proyecto
+            containerProgressProject.classList.add("container-progress-project");
+            legendProgress.classList.add("legend-progress","mb-0");
+            progress.classList.add("progress", "bg-success");
+
+            
+            // DEFINIENDO EL CONTENIDO PARA CADA ELEMENTO DEL PROYECTO
+
+            textImgCover.innerText = "Ver detalles del proyecto";
+            imgPersona.setAttribute("src", "/img/persona07.jpg");
+            legendPersona.innerText = miembros;
+            nameProject.innerText = nombre;
+            stateProject.innerText = "Activo";
+            descProject.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio quidem officiis deleniti odit doloremque enim autem exercitationem perspiciatis quis. Quas quis nulla soluta dolorum, possimus dolorem aliquam ea porro hic?"
+            legendProgress.innerText = "Progreso 75%";
+
+
+            // AGREGANDO LOS ELEMENTOS AL DOM
+
+            containerProject.appendChild(containerImgCover);
+            containerProject.appendChild(containerInfoProject);
+            
+            // agregando los elementos al container img del aside
+            containerImgCover.appendChild(content);
+            content.appendChild(textImgCover);
+            
+
+            // agregando los elementos al container de equipo
+            containerEquipo.appendChild(containerPersona);            
+            containerPersona.appendChild(imgPersona);
+            containerPersona.appendChild(legendPersona);
+            
+            // agregando los elementos al container main 
+            containerMainInfo.appendChild(containerNameProject);
+            containerMainInfo.appendChild(containerDescProject);
+            containerMainInfo.appendChild(containerProgressProject);
+
+            // agregando los elementos del nombre y estado
+            containerNameProject.appendChild(nameProject);
+            containerNameProject.appendChild(stateProject);
+
+            // agregando los elementos de la descripción
+            containerDescProject.appendChild(descProject);
+
+            // agregando los elementos del progreso
+            containerProgressProject.appendChild(legendProgress);
+            containerProgressProject.appendChild(progress);
+            
+            containerInfoProject.appendChild(containerEquipo);
+            containerInfoProject.appendChild(containerMainInfo);
+            
+            
+            
+
+            containerDashboardProyectos.appendChild(containerProject);
+
+            
+            
+            
+            
+        })
+
+
+
+
+    })
+
+}
+
+
+
+
+
+
 
 
 
@@ -471,6 +603,8 @@ verProyectos.addEventListener("click", function (e) {
 
     containerDashboard.style.display = "none";
     containerDashboardProyectos.style.display ="block"
+
+    mostrarProjectos();
 
 })
 
