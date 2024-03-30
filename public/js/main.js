@@ -435,23 +435,51 @@ FormProject.addEventListener("submit", async (e) =>{
 const verTareas = document.getElementById("verTareas");
 const verProyectos = document.getElementById("verProyectos");
 const containerDashboard = document.getElementById("container-dashboard");
+const containerDashboardProyectos = document.getElementById("container-dashboard-projects");
+const titleDashboard = document.getElementById("title-dashboard");
 // const stringClasesContainerDashboard = containerDashboard.className;
 // const arrayClasesContainerDashboard = stringClasesContainerDashboard.split(" ");
 // const claseDFlex = arrayClasesContainerDashboard.includes("d-flex");
 
 // console.log(ContainerDashboard);
 
+
+const containerProject = document.createElement("div");
+const imgAsideCover = document.createElement("img");
+const containerInfoProject = document.createElement("div");
+const containerEquipo = document.createElement("div");
+const containerPersona = document.createElement("div");
+const imgPersona = document.createElement("img");
+const legendPersona = document.createElement("p");
+const containerMainInfo = document.createElement("div");
+const containerStateProject = document.createElement("div");
+const stateProject = document.createElement("p");
+const containerProgressProject = document.createElement("div");
+const legendProgres = document.createElement("p");
+const progress = document.createElement("div");
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    containerDashboardProyectos.style.display = "none";
+})
+
+
 verProyectos.addEventListener("click", function (e) {
+    titleDashboard.innerText = "Tus Projectos";
+
 
     containerDashboard.style.display = "none";
-
-    console.log(containerDashboard);
+    containerDashboardProyectos.style.display ="block"
 
 })
 
 
 verTareas.addEventListener("click", function(){
+    titleDashboard.innerText = "Proyecto X"
+
     containerDashboard.style.display = "flex";
+    containerDashboardProyectos.style.display = "none"
 
     console.log(containerDashboard);
 })

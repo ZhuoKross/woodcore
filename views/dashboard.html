@@ -116,13 +116,13 @@
 
                 <dialog id="modal-form-project">
                     <h2 class="text-dark">Añadir un Proyecto</h2>
-                    <form class="needs-validation" onsubmit="return validarRegistro()"
-                        id="form-project">
+                    <form class="needs-validation" onsubmit="return validarRegistro()" id="form-project">
                         <!-- Nombre -->
                         <div class="mb-2">
                             <div class="col-sm-9 input-group border-bottom border-dark">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
-                                    id="InputNombre" placeholder="Nombre" minlength="10" required>
+                                <input type="text" name="Nombre"
+                                    class="form-control bg-dark-x border-0 flex-grow-1 mb-2" id="InputNombre"
+                                    placeholder="Nombre" minlength="10" required>
                             </div>
                         </div>
 
@@ -152,9 +152,9 @@
                         <!-- Encargado del proyecto -->
                         <div class="mb-3">
                             <div class="col-sm-9 input-group border-bottom border-dark">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
-                                    id="Encargado del proyecto" placeholder="Encargado del proyecto" minlength="6"
-                                    required>
+                                <input type="text" name="Nombre"
+                                    class="form-control bg-dark-x border-0 flex-grow-1 mb-2" id="Encargado del proyecto"
+                                    placeholder="Encargado del proyecto" minlength="6" required>
                             </div>
                         </div>
 
@@ -170,8 +170,9 @@
                         <!-- Roles del equipo -->
                         <div class="mb-3">
                             <div class="col-sm-9 input-group border-bottom border-dark">
-                                <input type="text" name="Nombre" class="form-control bg-dark-x border-0 flex-grow-1 mb-2"
-                                    id="Roles del equipo" placeholder="Roles del equipo" minlength="6" required>
+                                <input type="text" name="Nombre"
+                                    class="form-control bg-dark-x border-0 flex-grow-1 mb-2" id="Roles del equipo"
+                                    placeholder="Roles del equipo" minlength="6" required>
                             </div>
 
                         </div>
@@ -253,7 +254,7 @@
 
 
                 <!-- Parte del dashboard -->
-                <h2 class="text-center mb-3">Proyecto X</h2>
+                <h2 class="text-center mb-3 " id="title-dashboard"></h2>
                 <div class="container-dashboard" id="container-dashboard">
                     <div>
                         <h4 class="text-center title-tasks"> Tareas sin hacer</h4>
@@ -326,6 +327,72 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- ESTRUCTURA PARA EL DASHBOARD DE PROYECTOS  -->
+
+                <div class="container-dashboard-projects" id="container-dashboard-projects">
+                    <div class="container-projects">
+                        <!-- proyectos -->
+
+                        <div class="container-project d-flex ms-4">
+                            <!-- img cover -->
+                            <img src="/img/img-cover-01.jpg" id="img-aside-cover" class="">
+                            <!-- container de la info del proyecto -->
+                            <div class="container-info-project">
+                                <!-- container del head con la info del equipo -->
+                                <div class="container-equipo d-flex justify-content-start ms-2">
+                                    <!-- persona 01 -->
+                                    <div class="contaiener-persona d-flex flex-column align-items-center mt-2 me-2">
+                                        <img src="/img/persona05.jpg" class="img-persona rounded-circle">
+                                        <p class="legend-persona mb-0">Luis</p>
+                                    </div>
+
+                                    <!-- persona 02 -->
+                                    <div class="contaiener-persona d-flex flex-column align-items-center mt-2 me-2">
+                                        <img src="/img/persona07.jpg" class="img-persona rounded-circle">
+                                        <p class="legend-persona mb-0">Pedro</p>
+                                    </div>
+
+                                    <!-- persona 03 -->
+                                    <div class="contaiener-persona d-flex flex-column align-items-center mt-2 me-2">
+                                        <img src="/img/persona4.jpg" class="img-persona rounded-circle">
+                                        <p class="legend-persona mb-0">Alfonso</p>
+                                    </div>
+
+                                    <!-- persona 04 -->
+                                    <div class="contaiener-persona d-flex flex-column align-items-center mt-2 me-2">
+                                        <img src="/img/persona3.jpg" class="img-persona rounded-circle">
+                                        <p class="legend-persona mb-0">Jessica</p>
+                                    </div>
+                                </div>
+
+                                <!-- container de la info principal -->
+                                <div class="container-main-info d-flex flex-column align-content-between me-1 ms-2 mt-1">
+                                    <div class="container-name-project d-flex">
+                                        <p class="fs-4 fw-bold name-project mb-0">Crear app movil</p>
+                                        <p class="state-project mb-0 text-wrap bg-success rounded-pill text-center state ms-1 me-1 flex-shrink-0 align-self-center">Activo</p>
+                                    </div>
+
+                                    <div class="container-desc-project">
+                                        <p class="desc-project mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio quidem officiis deleniti odit doloremque enim autem exercitationem perspiciatis quis. Quas quis nulla soluta dolorum, possimus dolorem aliquam ea porro hic?</p>
+                                    </div>
+
+                                    <div class="container-progress-project">
+                                        <p class="legend-progress mb-0">Progreso 100%</p>
+                                        <div class="progress bg-success"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
             </article>
         </section>
 
