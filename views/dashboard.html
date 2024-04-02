@@ -116,7 +116,7 @@
 
                 <dialog id="modal-form-project">
                     <h2 class="text-dark">Añadir un Proyecto</h2>
-                    <form class="needs-validation" onsubmit="return validarRegistro()" id="form-project">
+                    <form class="needs-validation" onsubmit="return validarProyecto()" id="form-project">
                         <!-- Nombre -->
                         <div class="mb-2">
                             <div class="col-sm-9 input-group border-bottom border-dark">
@@ -195,7 +195,7 @@
                 <!-- Form para la creación de tareas -->
                 <dialog id="modal-form">
                     <h2 class="text-dark">Añadir una tarea</h2>
-                    <form class="form-tasks">
+                    <form class="form-tasks" onsubmit="return validarTarea()">
 
                         <!-- inputs del formulario -->
                         <div class="container-form-tasks-content d-flex p-3">
@@ -416,6 +416,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+
+        <!-- script de alerta -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- script de validacion formulario proyectos -->
+    <script>
+        function validarProyecto() {
+            var InputNombre = document.getElementById("InputNombre").value;
+            var prioridad = document.getElementById("Prioridad").value;
+            var sprint = document.getElementById("sprint").value;
+            var encargado_proyecto = document.getElementById("encargado_proyecto").value;
+            var miembros_proyecto = document.getElementById("miembros_proyecto").value;
+            var roles_equipo = document.getElementById("roles_equipo").value;
+
+
+            if (InputNombre.trim() === "" || prioridad === "" || sprint.trim() === "" || encargado_proyecto.trim() === "" || miembros_proyecto.trim() === "" || roles_equipo.trim() === "") {
+                alert("Por favor completa todos los campos obligatorios.");
+                return false;
+            }else{
+                Swal.fire("Proyecto creado exitosamente!");
+            }
+            return true;
+        }
+    </script>
+
+    <!-- Script de la validacion formulario tareas -->
+    <script>
+        function validarTarea() {
+            var nombre_task = document.getElementById("nombre_task").value;
+            var prioridad = document.getElementById("prioridad").value;
+            var des_task = document.getElementById("des_task").value;
+            var estado = document.getElementById("estado").value;
+            var encargado = document.getElementById("encargado").value;
+            var sprint_task = document.getElementById("sprint_task").value;
+            if (nombre_task.trim() === "" || prioridad === "" || des_task.trim() === "" || estado.trim() === "" || encargado.trim() === "" || sprint_task.trim() === "") {
+                alert("Por favor completa todos los campos obligatorios.");
+                return false;
+            }else{
+                Swal.fire("Tarea creada exitosamente!");
+            }
+            return true;
+
+        }
+    </script>
 
 </body>
 
