@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const conexion = require("./model/conexion");
-const tareas = require("./model/tareas")
+const tareas = require("./services/tareas")
 const taskController = require("./controllers/taskController");
 const cors = require("cors");
 
@@ -51,6 +51,15 @@ app.get("/sign-up", taskController.mostrarRegistro)
 app.get("/recuperar", taskController.recuperarContraseña)
 app.post("/api/add-task", taskController.addTask);
 app.post("/api/add-project", taskController.addProject);
+
+//para buscar la tarea en el update
+app.post("/buscarTarea", taskController.getOneTask);
+
+//para actualizar la tarea
+app.post("/edit-task", taskController.editOneTask);
+
+//para eliminar una tarea
+app.post("/delete-task", taskController.deleteOneTask);
 
 
 // Para hacer la ruta hacia el form de tareas y crear la funcionalidad 

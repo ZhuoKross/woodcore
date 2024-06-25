@@ -143,7 +143,7 @@ h2 {
 }
 
 
-.container-content-dashboard{
+.container-content-dashboard {
     width: 100%;
 }
 
@@ -154,12 +154,12 @@ h2 {
     height: 60px;
 }
 
-.container-btn-crear-proyecto{
+.container-btn-crear-proyecto {
     height: 50px;
 }
 
 
-.icon-task-nav{
+.icon-task-nav {
     height: 40px;
 }
 
@@ -244,15 +244,15 @@ h2 {
     /* #D9415D */
 }
 
-.container-heading-task{
+.container-heading-task {
     height: 30%;
 }
 
-.name-task{
+.name-task {
     line-height: 22px;
 }
 
-.desc-task{
+.desc-task {
     height: 40%;
 }
 
@@ -267,64 +267,114 @@ h2 {
     position: static;
 }
 
-.first-state{
+.first-state {
     height: 10px;
 }
 
-.second-state{
+.second-state {
     height: 10px;
 }
 
-.third-state{
+.third-state {
     height: 10px;
 }
+
+
+/* Estilos del icon de edit task */
+
+
+.edit-task-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.btn-abrir-form-edit-tasks {
+    background-color: #262626;
+    border: none;
+    height: 50px;
+    width: 50px;
+}
+
 
 
 /* ESTILOS DEL MODAL FORM PARA LA CREACIÓN DE TAREAS */
 
-#modal-form::backdrop{
- background-color: rgba(0, 0, 0, .55);   
+#modal-form::backdrop {
+    background-color: rgba(0, 0, 0, .55);
 }
 
-#modal-form{
+#modal-form {
     border: unset;
     border-radius: 10px;
 }
 
-#modal-form textarea{
+#modal-form textarea {
     resize: none;
     background-color: #d9d9d9;
 }
 
-#modal-form input, select, option{
+#modal-form input,
+select,
+option {
     background-color: #d9d9d9;
 }
 
-.btns-tasks{
+.btns-tasks {
     border-radius: 10px;
 
 }
 
 
-.btns-tasks:hover{
+
+
+
+
+/* ESTILOS DEL MODAL FORM PARA LA EDICIÓN DE TAREAS */
+
+
+#modal-edit-task-form::backdrop {
+    background-color: rgba(0, 0, 0, .55);
+}
+
+#modal-edit-task-form {
+    border: unset;
+    border-radius: 10px;
+}
+
+#modal-edit-task-form textarea {
+    resize: none;
+    background-color: #d9d9d9;
+}
+
+#modal-edit-task-form input,
+select,
+option {
+    background-color: #d9d9d9;
+}
+
+.btn-save-task:hover{
+    background-color: #d9d9d9;
+
+}
+
+.btn-close-modal-edit:hover{
     background-color: #d9d9d9;
 }
 
 
-
 /* ESTILOS DEL MODAL FORM PARA LA CREACIÓN DE PROYECTOS */
 
-#modal-form-project{
+#modal-form-project {
     padding: 50px;
     border: none;
     border-radius: 10px;
 }
 
-#modal-form-project::backdrop{
+#modal-form-project::backdrop {
     background-color: rgba(0, 0, 0, .55);
 }
 
-#cerrar-form-proyecto{
+#cerrar-form-proyecto {
     border-radius: 10px;
     background-color: #d9d9d9;
 }
@@ -335,7 +385,7 @@ h2 {
 
 /* ESTILOS DEl DASBOARD DE PROYECTOS */
 
-.container-dashboard-projects{
+.container-dashboard-projects {
     display: flex;
     min-height: 80vh;
     width: 1100px;
@@ -345,35 +395,35 @@ h2 {
     flex-shrink: 2;
 }
 
-.container-projects{
+.container-projects {
     width: 100%;
 
 }
 
-.container-project{
+.container-project {
     width: 500px;
     height: 300px;
     background-color: #262626;
     border-radius: 10px;
 }
 
-.container-info-project{
+.container-info-project {
     width: 100%;
 }
 
-.container-main-info{
+.container-main-info {
     height: 200px;
 }
 
-.container-img-cover{
-    width: 150px;   
+.container-img-cover {
+    width: 150px;
     height: 300px;
     background-image: url("/img/img-cover-01.jpg");
     background-size: cover;
     background-position: center;
 }
 
-.content{
+.content {
     width: 100%;
     height: 100%;
     display: flex;
@@ -384,42 +434,44 @@ h2 {
     transition: .3s;
 }
 
-.container-img-cover:hover .content{
+.container-img-cover:hover .content {
     opacity: 1;
 }
 
-.text-img-cover{
+.text-img-cover {
     color: var(--text-color);
     text-align: center;
 }
 
 
-.img-persona{
+.img-persona {
     width: 50px;
     height: 50px;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
 
-.legend-persona, .name-project, .state-project, .legend-progress, .desc-project{
+.legend-persona,
+.name-project,
+.state-project,
+.legend-progress,
+.desc-project {
     color: var(--text-color);
 }
 
-.name-project:hover{
+.name-project:hover {
     color: var(--bg-blue);
     cursor: pointer;
 }
 
-.desc-project{
+.desc-project {
     font-size: 15px;
 }
 
-.container-progress-project{
+.container-progress-project {
     margin-top: auto;
 }
 
-.progress{
+.progress {
     height: 7px;
 }
-
-

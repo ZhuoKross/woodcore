@@ -51,6 +51,8 @@ async function fetchTareas() {
                 const containerSprintTask = document.createElement("div");
                 const legendFechaTarea = document.createElement("p");
                 const sprintTarea = document.createElement("p");
+                const botonEditarTarea = document.createElement("button");
+                const iconEditarTarea = document.createElement("img");
 
                 // Parte del contenido de la tarea
                 const containerContenidoTarea = document.createElement("div");
@@ -85,6 +87,8 @@ async function fetchTareas() {
                 containerSprintTask.classList.add("d-flex", "flex-column", "align-items-end", "me-3", "w-50");
                 legendFechaTarea.classList.add("mb-0", "mt-2", "t-fecha");
                 sprintTarea.classList.add("fecha", "me-1");
+                botonEditarTarea.classList.add("btn-abrir-form-edit-tasks", "align-self-start");
+                iconEditarTarea.classList.add("edit-task-icon");
 
                 // Definición de las clases del contenido de la tarea
                 containerContenidoTarea.classList.add("desc-task", "d-flex", "flex-column", "justify-content-center", "ms-2", "mt-2");
@@ -113,6 +117,7 @@ async function fetchTareas() {
                 legendEncargado.innerText = "Encargado";
                 legendFechaTarea.innerText = "Fecha límite";
                 sprintTarea.innerText = sprintFormateado;
+                iconEditarTarea.setAttribute("src", "../img/edit.png");
 
                 // Agregando el contendio del contenido de la tarea
                 nombreTarea.innerText = nombre;
@@ -135,6 +140,8 @@ async function fetchTareas() {
                 containerHeadTask.appendChild(containerSprintTask);
                 containerSprintTask.appendChild(legendFechaTarea);
                 containerSprintTask.appendChild(sprintTarea);
+                containerHeadTask.appendChild(botonEditarTarea);
+                botonEditarTarea.appendChild(iconEditarTarea);
 
                 // Agregando los elementos al contenido de la tarea
                 containerContenidoTarea.appendChild(containerNombreTarea);
@@ -159,7 +166,8 @@ async function fetchTareas() {
 
             obtenerYCrearEventosTareas();
             aplicarPrimerEstado();
-            
+            abrirModalEditTasks();
+
         })
         .catch(err => console.log("error al cargar las tareas: ", err))
 
@@ -304,7 +312,7 @@ async function estadosTareas() {
         // Adquirir los elementos padre y su clase
         const elementoPadre = tarea.parentNode;
         const idElementoPadre = elementoPadre.id;
-        
+
         // prueba para ver el id del elemento padre de cada tarea
         // console.log(idElementoPadre);
 
@@ -335,37 +343,37 @@ async function estadosTareas() {
 
 
         // condicional para las tareas que se encuentren en el primer elemento padre (Tareas sin hacer)
-        if(idElementoPadre === "sinHacer" && claseBgPrimarySecondState  && claseBgPrimaryThirdState){
-            
+        if (idElementoPadre === "sinHacer" && claseBgPrimarySecondState && claseBgPrimaryThirdState) {
+
             secondState.classList.remove("bg-primary");
             thirdState.classList.remove("bg-primary");
 
-        }else if(idElementoPadre === "sinHacer" && claseBgPrimaryThirdState){
+        } else if (idElementoPadre === "sinHacer" && claseBgPrimaryThirdState) {
 
             thirdState.classList.remove("bg-primary");
 
-        }else if(idElementoPadre === "sinHacer" && claseBgPrimarySecondState){
-            
+        } else if (idElementoPadre === "sinHacer" && claseBgPrimarySecondState) {
+
             secondState.classList.remove("bg-primary");
 
-        }else if(idElementoPadre === "Haciendo" && claseBgPrimaryThirdState){
+        } else if (idElementoPadre === "Haciendo" && claseBgPrimaryThirdState) {
 
             thirdState.classList.remove("bg-primary");
             console.log("elemento padre: Tareas en proceso");
 
 
-        }else if(idElementoPadre === "Haciendo" && claseBgPrimarySecondState === false){
+        } else if (idElementoPadre === "Haciendo" && claseBgPrimarySecondState === false) {
 
             secondState.classList.add("bg-primary");
-            
-        
-        }else if(idElementoPadre === "taskHecho" && claseBgPrimarySecondState === false && claseBgPrimaryThirdState === false){
-            
+
+
+        } else if (idElementoPadre === "taskHecho" && claseBgPrimarySecondState === false && claseBgPrimaryThirdState === false) {
+
             secondState.classList.add("bg-primary");
             thirdState.classList.add("bg-primary");
-            
 
-        }else if(idElementoPadre === "taskHecho"){
+
+        } else if (idElementoPadre === "taskHecho") {
 
             thirdState.classList.add("bg-primary");
 
@@ -428,6 +436,222 @@ modalForm.forEach(form => {
 
     })
 })
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Funcionalidad para crear el form de editar tareas
+
+//Funcionalidad para abir y cerrar el form de editar tareas
+
+function abrirModalEditTasks() {
+    //obtener los botones para abrir y cerrar cada modal
+    const abirModalFormEditTasks = document.querySelectorAll(".btn-abrir-form-edit-tasks");
+    const cerrarModalFormEditTasks = document.querySelectorAll("#close-edit-form");
+    //obtener el modal y el fom de editar tareas
+    const modalEditTaskForm = document.querySelectorAll("#modal-edit-task-form");
+    const formEditTask = document.querySelectorAll(".form-edit-tasks")
+
+
+    //crear las variables para guardar los inputs y los elementos del form
+    const inputNombreTarea = formEditTask[0][0];
+    const inputDescTarea = formEditTask[0][2];
+    const inputEncargadoTarea = formEditTask[0][4];
+    const inputSelectPrioridad = formEditTask[0][1];
+    const optionsSelectPrioridad = inputSelectPrioridad.children;
+    const inputSelectEstado = formEditTask[0][3];
+    const optionsSelectEstado = inputSelectEstado.children;
+    
+    
+    
+
+    //console.log(inputEncargadoTarea);
+    //console.log(inputSelectPrioridad);
+
+    abirModalFormEditTasks.forEach(button => {
+        modalEditTaskForm.forEach(form => {
+
+            cerrarModalFormEditTasks.forEach(button => {
+                button.addEventListener("click", () => {
+                    form.close();
+                })
+            })
+
+            button.addEventListener("click", async (e) => {
+                //Funcionalidad para obtener el nombre de la tarea que se quiere 
+                //modificar cuando se abre el modal de actualizar
+                const elementoPadreTarea = e.target.parentNode.parentNode.parentNode;
+                const textoNombreTarea = elementoPadreTarea.children[1].children[0].children[0].textContent;
+
+                const tareaAbuscar = {
+                    "nombreTarea": textoNombreTarea
+                }
+
+                //prueba para ver que se obtiene el nombre de la tarea seleccionada
+                //console.log(tareaAbuscar);
+
+
+
+                try {
+                    //Funcionalidad para enviar el nombre al backend y hacer la consulta
+                    const response = await fetch("http://localhost:3000/buscarTarea", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(tareaAbuscar)
+                    })
+
+                    if (!response.ok) {
+                        console.log("Error al obtener la tarea");
+                    }   
+
+                    //console.log(response);
+
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        throw new TypeError("La respuesta no es JSON");
+                    }
+
+                    // Objeto de respuesta de la petición de la tarea
+                    const result = await response.json();
+                    
+                    // Asignando el objeto de la tarea a una variable
+                    const tareaAActualizar = result.data[0];
+
+                    if (result.status === "OK" && result.data) {
+                        console.log("datos de la tarea:", result.data);
+
+                        //console.log(tareaAActualizar)
+                        
+                        ///////////////////////////////////////////////////////////////
+                        //Funcionalidad para definir los valores de los inputs del form
+                        inputNombreTarea.setAttribute("value", tareaAActualizar.nombre);
+                        inputDescTarea.textContent = tareaAActualizar.descripcion;
+                        inputEncargadoTarea.setAttribute("value", tareaAActualizar.encargado);
+
+                        
+                        //funcionalidad para recorrer cada uno de los options de prioridad y establecer el valor de acuerdo 
+                        // al objeto de la tarea
+                        for(const option of optionsSelectPrioridad){
+                            //prueba
+                            //console.log("tipo de dato:", typeof(option.textContent));
+                            //console.log(option.textContent)
+                            
+                            if(option.textContent.trim() === tareaAActualizar.prioridad){
+                                inputSelectPrioridad.value = option.value;
+                            }
+                        }
+
+                        //funcionalidad para recorrer cada uno de los options de estado de la tarea y establecer el valor de acuerdo 
+                        // al objeto de la tarea
+                        for(const option of optionsSelectEstado){
+                            const opcionesEstadoFormateadas = option.textContent.toLowerCase();
+
+                            //console.log(opcionesEstadoFormateadas);
+                            if(opcionesEstadoFormateadas.trim() === tareaAActualizar.estado){
+                                //prueba
+                                //console.log("coicidencia");
+
+                                inputSelectEstado.value = option.value;
+                            }
+                        }
+
+                        //console.log(tareaAActualizar.descripcion);
+
+                    } else {
+                        console.log("Error en la respuesta:", result.data);
+                    }
+
+                } catch (err) {
+                    console.error("ERROR: ", err);
+                }
+
+
+
+                form.showModal();
+
+
+                ///////////////////////////////////////////////////////////////
+                //Funcionalidad para enviar los valores actualizados del form
+
+                
+                formEditTask.forEach( form =>{
+                    form.addEventListener("submit", async (e) =>{
+                        //e.preventDefault();
+                        const result = fetch("http://localhost:3000/edit-task", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                nombre_tarea: e.target[0].value,
+                                prioridad: e.target[1].value,
+                                resumen: e.target[2].value,
+                                estado: e.target[3].value,
+                                encargado_tarea: e.target[4].value,
+                                sprint_tarea: e.target[5].value
+
+                            })
+                        })
+
+                        // CÓDGIGO DE PRUEBA
+                        //console.log(e);
+                        // console.log(e.target[0].value);
+                        // console.log(e.target[1].value);
+                        // console.log(e.target[2].value);
+                        // console.log(e.target[3].value);
+                        // console.log(e.target[4].value);
+                        // console.log(e.target[5].value);
+                    })
+                })
+                
+
+
+                ///////////////////////////////////////////////////////////////
+                //Funcionalidad para eliminar la tarea seleccionada del form
+
+                const buttonDeleteTask = document.getElementById("delete-task");
+                //prueba
+                //console.log(buttonDeleteTask);
+
+                buttonDeleteTask.addEventListener("click", async (e)=>{
+                    const elementoPadreDialog = e.target.parentNode.parentNode;
+                    const hijosElementoPadreDialog = elementoPadreDialog.children
+                    const nombreTarea = hijosElementoPadreDialog[1][0].value;
+
+                    const taskToDelete = {
+                        "nombreTarea": nombreTarea
+                    }
+
+                    console.log(e.target.parentNode.parentNode.children[1][0].value)
+                    
+                    const result = await fetch("http://localhost:3000/delete-task", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(taskToDelete)    
+                    })
+
+                    location.reload();
+                    
+                })
+
+
+            })
+        })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

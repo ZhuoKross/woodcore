@@ -252,6 +252,70 @@
                     </div>
                 </dialog>
 
+                
+                <!-- ///////////////////////////////////////// -->
+                <!-- Form para la edición de tareas -->
+                 <dialog id="modal-edit-task-form">
+                    <h2 class="text-dark">Modificar tarea</h2>
+                    <form class="form-edit-tasks">
+
+                        <!-- inputs del formulario -->
+                        <div class="container-form-tasks-content d-flex p-3">
+                            <!-- Nombre tarea -->
+                            <div class="form-task-section-1 d-flex flex-column me-4 w-100">
+                                <label for="nombre_task"> Nombre de la tarea:</label>
+                                <input type="text" id="nombre_task" name="nombre_task"
+                                    class="mb-3 form-control border-0">
+
+                                <!-- Prioridad de la tarea -->
+                                <label for="prioridad"> Prioridad de la tarea:</label>
+                                <select name="prioridad" id="prioridad" class="form-select">
+                                    <option value="Urgente e importante">Urgente e importante</option>
+                                    <option value="Importante pero no urgente">Importante pero no urgente </option>
+                                    <option value="Urgente pero no importante">Urgente pero no importante</option>
+                                    <option value="Ni urgente ni importante">Ni urgente ni importante</option>
+                                </select>
+
+                                <!-- Descripción de la tarea -->
+                                <div class="des-task mb-3 mt-3">
+                                    <label for="des_task">Descripción de la tarea:</label>
+
+                                    <textarea id="des_task" cols="30" rows="10" name="des_task"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-task-section-2 d-flex flex-column w-100">
+                                <!-- estado de la tarea -->
+                                <label for="estado"> Estado de la tarea:</label>
+                                <select name="estado_tarea" id="estado" class=" form-select">
+                                    <option value="sin hacer">Sin Hacer</option>
+                                    <option value="en proceso">En proceso</option>
+                                    <option value="Realizada">Realizada</option>
+                                </select>
+
+                                <!-- Encargado -->
+                                <label for="encargado"> Encargado de la tarea:</label>
+                                <input type="text" id="encargado" name="encargado" class="form-control border-0">
+
+                                <!-- fecha límite de la tarea -->
+                                <label for="sprint_task"> Fecha límite:</label>
+                                <input type="date" id="sprint_task" name="sprint_task" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Botones del form -->
+                        <div class="d-inline-flex justify-content-center">
+                            <button class="btn-save-task me-4 btn btn-lg mb-3">Guardar Tarea</button>
+                        </div>
+                    </form>
+                    <!-- botón para cerrar el form -->
+                    <div class="btns-tasks d-inline-flex justify-content-center">
+                        <button class="btn btn-lg me-4 btn-close-modal-edit" id="close-edit-form">Volver</button>
+                        <button class="btn btn-lg btn-danger" id = "delete-task">Eliminar tarea</button>
+                    </div>
+                </dialog>
+
+
 
                 <!-- Parte del dashboard -->
                 <h2 class="text-center mb-3 " id="title-dashboard"></h2>
@@ -287,6 +351,12 @@
                                         <p class="mb-0 mt-2 t-fecha">Fecha límite</p>
                                         <p class="fecha me-1">03/04/2024</p>
                                     </div>
+                                    <!-- Botón para abrir el modal de modificación de tareas -->
+                                    <button class="btn-abrir-form-edit-tasks align-self-start">
+                                        <img src="../img/edit.png" class="edit-task-icon">
+                                    </button>
+                                    
+                                    
                                 </div>
                                 <div class="desc-task d-flex flex-column justify-content-center ms-2">
                                     <div class="d-flex mb-2 mt-2">
