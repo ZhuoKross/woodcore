@@ -106,7 +106,7 @@ const editOneTask = (nombreTarea, taskToEdit) =>{
     console.log("El nombre de la tarea a actualizar es: ", nombreTarea)
     console.log(taskToEdit);
     
-    const consultaEditarTarea = "UPDATE tareas_prueba SET ? WHERE nombre_tarea = ?"
+    const consultaEditarTarea = "UPDATE tareas_prueba SET ? WHERE nombre_tarea = ?" 
 
     conexion.query(consultaEditarTarea, [taskToEdit, nombreTarea], (err) =>{
         if(err){

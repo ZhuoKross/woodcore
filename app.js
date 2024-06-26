@@ -5,6 +5,7 @@ const conexion = require("./model/conexion");
 const tareas = require("./services/tareas")
 const taskController = require("./controllers/taskController");
 const cors = require("cors");
+const authController = require("./controllers/authController");
 
 // const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
@@ -47,7 +48,12 @@ app.get("/add-task", function(req, res){
     res.sendFile(path.resolve("views/tareas.html"))
 })
 app.get("/login", taskController.mostrarLogin)
+//para renderizar el form de registro
 app.get("/sign-up", taskController.mostrarRegistro)
+
+//para crear un usuario
+app.post("/create-user", authController.createUser)
+
 app.get("/recuperar", taskController.recuperarContraseña)
 app.post("/api/add-task", taskController.addTask);
 app.post("/api/add-project", taskController.addProject);

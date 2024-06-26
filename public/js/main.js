@@ -480,6 +480,9 @@ function abrirModalEditTasks() {
             button.addEventListener("click", async (e) => {
                 //Funcionalidad para obtener el nombre de la tarea que se quiere 
                 //modificar cuando se abre el modal de actualizar
+
+                e.preventDefault();
+
                 const elementoPadreTarea = e.target.parentNode.parentNode.parentNode;
                 const textoNombreTarea = elementoPadreTarea.children[1].children[0].children[0].textContent;
 
@@ -576,7 +579,8 @@ function abrirModalEditTasks() {
                 
                 formEditTask.forEach( form =>{
                     form.addEventListener("submit", async (e) =>{
-                        //e.preventDefault();
+                        console.log(e)
+                        e.preventDefault();
                         const result = fetch("http://localhost:3000/edit-task", {
                             method: "POST",
                             headers: {
