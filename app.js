@@ -1,34 +1,30 @@
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
-const conexion = require("./model/conexion");
-const tareas = require("./services/tareas")
-const taskController = require("./controllers/taskController");
 const cors = require("cors");
-const authController = require("./controllers/authController");
+const usersRoutes = require("./routes/personsRoutes");
+const tareasRoutes = require("./routes/tareasRoutes");
+const proyectosRoutes = require("./routes/proyectosRoutes");
 
-// const __dirname = path.dirname(new URL(import.meta.url).pathname)
+
 
 // inicialización de express
 const app = express();
 
-// configuración del generador de plantillas
-// app.set("view engine", "ejs");
-// app.set("views", path.join(__dirname, "views"))
 
 
+
+///////////////////////////////////////////////////
+////////////////// MIDDLEWARES ////////////////////
 
 // para la configuración de morgan
 app.use(morgan("dev"));
 // Para la configuración de CORS
 app.use(cors());
-
-
 // configuración de los archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 // Configuración de las vistas
 app.set("views", path.join(__dirname, "views"))
-
 // Para que se puedan interpretar los datos
 app.use(express.json());
 //para la codificación de las url
@@ -37,95 +33,39 @@ app.use(express.urlencoded({extended:false}));
 
 
 
+///////////////////////////////////////////////////
+//////////////////// RUTAS ////////////////////////
 
-// rutas
-app.get("/", taskController.homePage)
-app.get("/dashboard", taskController.mostrarDashboard)
-app.get("/task-info", taskController.mostrarDatosTareas)
-app.get("/projects-info", taskController.mostrarProjectos);
-app.get("/add-project", taskController.addProjectForm)
-app.get("/add-task", function(req, res){
-    res.sendFile(path.resolve("views/tareas.html"))
+// Para mostrar el landing page
+app.get("/", (req, res) =>{
+    res.sendfile(path.resolve("views/index.html"));
 })
-app.get("/login", taskController.mostrarLogin)
-//para renderizar el form de registro
-app.get("/sign-up", taskController.mostrarRegistro)
-
-//para crear un usuario
-app.post("/create-user", authController.createUser)
-
-app.get("/recuperar", taskController.recuperarContraseña)
-app.post("/api/add-task", taskController.addTask);
-app.post("/api/add-project", taskController.addProject);
-
-//para buscar la tarea en el update
-app.post("/buscarTarea", taskController.getOneTask);
-
-//para actualizar la tarea
-app.post("/edit-task", taskController.editOneTask);
-
-//para eliminar una tarea
-app.post("/delete-task", taskController.deleteOneTask);
-
-
-// Para hacer la ruta hacia el form de tareas y crear la funcionalidad 
-app.post("/add-task", function(req, res){
-    const datosFormTasks = req.body;
-
-    let nombreTarea = datosFormTasks.nombre_task
-    let prioridadTarea = datosFormTasks.prioridad
-    let descripcionTarea = datosFormTasks.descripcion
-    let estadoTarea = datosFormTasks.estado_tarea
-    let encargadoTarea = datosFormTasks.encargado
-    let sprintTask = datosFormTasks.sprint_task
-
-    let registrarTarea = "INSERT INTO tareas_prueba (nombre_tarea, prioridad, resumen, estado, encargado_tarea, sprint_tarea) VALUES ('"+nombreTarea+"', '"+prioridadTarea+"', '"+descripcionTarea+"', '"+estadoTarea+"', '"+encargadoTarea+"', '"+sprintTask+"')";
-
-    conexion.query(registrarTarea, function(err){
-        if(err){
-            throw err
-        }else{
-            console.log("tarea guardada correctamente")
-            
-        }
-    })
+// Para mostrar el dashboard
+app.get("/dashboard", (req, res) => {
+    res.sendfile(path.resolve("views/dashboard.html"));
+})
+// Para mostrar el login
+app.get("/login", (req, res) =>{
+    res.sendfile(path.resolve("views/inicio_sesion.html"))
+})
+// Para mostrar el registro
+app.get("/sig-up", (req, res) =>{
+    res.sendfile(path.resolve("views/registro.html"))
+})
+// Para mostrar el form de recuperar
+app.get("/recuperar", (req, res) => {
+    res.sendfile(path.resolve("views/recuperar.html"))
 })
 
 
-
-
-
-
-// Para hacer la ruta hacia el form de proyectos y crear la funcionalidad
-app.post("/validar", function(req, res){
-    const datos = req.body;
-
-    let nombre_proyecto = datos.nombre_proyecto
-    let prioridad_proyecto = datos.Prioridad
-    let sprint_proyecto = datos.Sprint
-    let encargado_proyecto = datos.encargado_proyecto
-    let miembors = datos.miembros
-    let roles = datos.roles
-
-    let registrar = "INSERT INTO proyecto_prueba (nombre_proyecto, sprint) VALUES ('"+nombre_proyecto+"','"+sprint_proyecto+"')";
-
-    conexion.query(registrar, function(err){
-        if(err){
-            throw err
-        }else{
-            console.log("datos almacenados correctamente")
-            // conexion.end()
-        }
-    })
-})
-
-
-
-
-
+// Para los proyectos y tareas
+app.use("/dashboard/tasks", tareasRoutes);
+app.use("/dashboard/projects", proyectosRoutes);
+// Para los usuarios
+app.use("/users", usersRoutes);
 
 
 
 app.listen(3000,function(){
-    console.log("servidor creador correctamente: http://localhost:3000")
+    console.log("servidor creado correctamente: http://localhost:3000")
 })

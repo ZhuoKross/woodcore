@@ -4,6 +4,8 @@ const conexion = require("../model/conexion")
 const seleccionarTareas = "SELECT * FROM tareas_prueba";
 
 
+
+
 function mostrarTareas (){
     return new Promise((resolve, reject)=>{
         conexion.query(seleccionarTareas, function(err, listOfTasks){
