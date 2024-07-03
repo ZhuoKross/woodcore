@@ -3,7 +3,7 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 
 
-router.route("/")
+router
     .get("/:id", authController.consultarUno)
     .post("/", authController.insertar)
     .put("/:id", authController.actualizar)

@@ -3,7 +3,7 @@ const router = express.Router();
 const taskController = require("../controllers/taskController.js")
 
 
-router.route("/")
+router
     .get("/", taskController.consultarTodo)
     .get("/:id", taskController.consultarUno)
     .post("/", taskController.insertar)

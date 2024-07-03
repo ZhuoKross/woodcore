@@ -1,4 +1,4 @@
-const tareas = require("../services/tareas.js");
+const tareaService = require("../services/tareas.js");
 
 
 
@@ -8,7 +8,7 @@ class TasksController {
     }
 
     consultarTodo(req, res) {
-        tareas.mostrarTareas()
+        tareaService.mostrarTareas()
             .then(tareasProcesadas => {
                 res.json(tareasProcesadas)
             })
@@ -17,63 +17,82 @@ class TasksController {
             })
     }
 
-    consultarUno(req, res) {
+    consultarUno(req, res){
+        const idTarea = req.params.id
+        
+        console.log(`El id de la tarea a buscar es: ${idTarea}`);
+        if(!idTarea){
+            console.log("(CONTROLLER) Error al obtener la tarea");
+        }
 
+
+        tareaService.getOneTask(idTarea)
+        .then(tarea =>{res.json(tarea)})
+        .catch(err =>{
+            console.log("Error al devolver la tarea(CONTROLLER)", err);
+        })
+
+        
     }
+
 
     insertar(req, res) {
         // prueba de código de que los datos se adquirieron desde el front end
         // console.log(req.body);
 
-        const nombre = req.body.nombre
+        const nombre_tarea = req.body.nombre
         const prioridad = req.body.prioridad
-        const descripcion = req.body.descripcion
-        const estado = req.body.estado
-        const encargado = req.body.encargado
-        const sprint = req.body.sprint
+        const resumen = req.body.descripcion
+        const encargado_tarea = req.body.encargado
+        const sprint_tarea = req.body.sprint
 
-        let registrarTarea = "INSERT INTO tareas_prueba (nombre_tarea, prioridad, resumen, estado, encargado_tarea, sprint_tarea) VALUES ('" + nombre + "', '" + prioridad + "', '" + descripcion + "', '" + estado + "', '" + encargado + "', '" + sprint + "')";
+        const newTask = {
+            nombre_tarea,
+            prioridad,
+            resumen,
+            encargado_tarea,
+            sprint_tarea
+        }
 
-        conexion.query(registrarTarea, function (err) {
-            if (err) {
-                throw err
-            } else {
-                console.log("datos almacenados correctamente")
-            }
-        })
+
+        tareaService.crearTarea(newTask);
+
+        
     }
 
     actualizar(req, res) {
-        const nombreTarea = req.body.nombreTarea;
+        const {
+            body, 
+            params: {id}
+        } = req;
 
-        if (!nombreTarea) {
-            console.log("Error al obtener la tarea(CONTROLLER)");
-            res.status(400).send({ status: "ERROR", message: "nombre de tarea no proporcinado" });
+        if (!id) {
+            console.log("Error al obtener la tarea(CONTROLLER UPDATE)");
+            res.status(400).send({ status: "ERROR", message: "id de tarea no proporcinado" });
         }
 
-        tareas.getOneTask(nombreTarea)
-            .then(tarea => {
-                //prueba
-                //console.log("CONTROLLER: La respuesta es: ", tareaProcesada)
-                res.send({ status: "OK", data: tarea })
-            })
-            .catch(err => {
-                console.log("Error en la respuesta (Controller)");
-            })
+        console.log("el id de la tarea a actualizar es: ", id);
+        console.log(`Los cambios son: ${body}`);
+
+        tareaService.editOneTask(id, body)
+        .then(tareaActualizada => res.json(tareaActualizada))
     }
 
+
     eliminar(req, res) {
-        const nombreTarea = req.body.nombreTarea;
+        const {id} = req.params;
 
-        console.log("Tarea a eliminar(CONTROLLER): ", nombreTarea);
+        console.log("Tarea a eliminar(CONTROLLER): ", id);
 
-        if (!nombreTarea) {
-            console.log("ERROR: No se proporciono el nombre de la tarea (CONTROLLER)");
+        if (!id) {
+            console.log("ERROR: No se proporciono el id de la tarea (CONTROLLER)");
         }
 
-        tareas.deleteOneTask(nombreTarea);
-
-        res.redirect("/dashboard");
+        tareaService.deleteOneTask(id)
+        .then(mensaje =>{
+            res.json(mensaje);
+        })
+        
     }
 }
 

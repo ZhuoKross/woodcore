@@ -16,9 +16,6 @@ class ProjectsController {
             })
     }
 
-    consultarUno(req, res) {
-
-    }
 
     insertar(req, res) {
         // prueba de código de que los datos se adquirieron desde el front end
