@@ -17,8 +17,9 @@ async function fetchTareas() {
 
             // Recorriendo cada uno de los elementos del conjunto de tareas
             tareas.forEach(task => {
+                //console.log(task);
                 // Creando y asignando cada una de las propiedades de la tarea por cada una de las tareas 
-                // const tarea_id = task.tarea_id;
+                const tarea_id = task.tarea_id;
                 const nombre = task.nombre;
                 const prioridad = task.prioridad;
                 const descripcion = task.descripcion;
@@ -76,6 +77,8 @@ async function fetchTareas() {
 
                 // Definiendo los atributos y clases para caada elemento
                 contenedorTarea.classList.add("task", "d-flex", "flex-column", "rounded-top", "me-2", "mb-2");
+                contenedorTarea.setAttribute("idTask", tarea_id)
+                //console.log(contenedorTarea.getAttribute("id"));
                 contenedorTarea.setAttribute("draggable", true);
 
                 // Definición de las clases del container head de la tarea
@@ -418,7 +421,7 @@ modalForm.forEach(form => {
 
     formCreatTask.addEventListener("submit", async (e) => {
         // e.preventDefault()
-        const res = await fetch("http://localhost:3000/api/add-task", {
+        const res = await fetch("http://localhost:3000/dashboard/tasks", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -427,7 +430,6 @@ modalForm.forEach(form => {
                 nombre: e.target.children[0].children[0].children.nombre_task.value,
                 prioridad: e.target.children[0].children[0].children.prioridad.value,
                 descripcion: e.target.children[0].children[0].children[4].children.des_task.value,
-                estado: e.target.children[0].children[1].children.estado.value,
                 encargado: e.target.children[0].children[1].children.encargado.value,
                 sprint: e.target.children[0].children[1].children.sprint_task.value
             })
@@ -442,6 +444,7 @@ modalForm.forEach(form => {
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Funcionalidad para crear el form de editar tareas
 
+
 //Funcionalidad para abir y cerrar el form de editar tareas
 
 function abrirModalEditTasks() {
@@ -451,19 +454,19 @@ function abrirModalEditTasks() {
     //obtener el modal y el fom de editar tareas
     const modalEditTaskForm = document.querySelectorAll("#modal-edit-task-form");
     const formEditTask = document.querySelectorAll(".form-edit-tasks")
+    //const tarea = document.querySelectorAll(".task")
 
 
     //crear las variables para guardar los inputs y los elementos del form
     const inputNombreTarea = formEditTask[0][0];
     const inputDescTarea = formEditTask[0][2];
-    const inputEncargadoTarea = formEditTask[0][4];
+    const inputEncargadoTarea = formEditTask[0][3];
     const inputSelectPrioridad = formEditTask[0][1];
     const optionsSelectPrioridad = inputSelectPrioridad.children;
-    const inputSelectEstado = formEditTask[0][3];
-    const optionsSelectEstado = inputSelectEstado.children;
     
-    
-    
+
+
+
 
     //console.log(inputEncargadoTarea);
     //console.log(inputSelectPrioridad);
@@ -484,10 +487,13 @@ function abrirModalEditTasks() {
                 e.preventDefault();
 
                 const elementoPadreTarea = e.target.parentNode.parentNode.parentNode;
-                const textoNombreTarea = elementoPadreTarea.children[1].children[0].children[0].textContent;
+                //console.log(elementoPadreTarea.getAttribute("idTask"));
+                const idTarea = elementoPadreTarea.getAttribute("idTask");
 
+                //prueba
+                //console.log("id tarea(front-end)", idTarea);
                 const tareaAbuscar = {
-                    "nombreTarea": textoNombreTarea
+                    "idTarea": idTarea
                 }
 
                 //prueba para ver que se obtiene el nombre de la tarea seleccionada
@@ -496,16 +502,12 @@ function abrirModalEditTasks() {
 
 
                 try {
-                    //Funcionalidad para enviar el nombre al backend y hacer la consulta
-                    const response = await fetch("http://localhost:3000/buscarTarea", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(tareaAbuscar)
-                    })
+                    //Funcionalidad para enviar el id al backend y hacer la consulta
+                    const response = await fetch(`/dashboard/tasks/${idTarea}`)
 
                     if (!response.ok) {
                         console.log("Error al obtener la tarea");
-                    }   
+                    }
 
                     //console.log(response);
 
@@ -516,52 +518,42 @@ function abrirModalEditTasks() {
 
                     // Objeto de respuesta de la petición de la tarea
                     const result = await response.json();
-                    
+                    //console.log(result);
+
                     // Asignando el objeto de la tarea a una variable
-                    const tareaAActualizar = result.data[0];
+                    const tareaAActualizar = result[0];
 
-                    if (result.status === "OK" && result.data) {
-                        console.log("datos de la tarea:", result.data);
-
-                        //console.log(tareaAActualizar)
+                    if (!result) {
                         
+                        console.log("Error en la respuesta:", result);
+
+                    } else {
+                        //prueba
+                        //console.log("datos de la tarea:", result);
+
+                        //console.log(inputEncargadoTarea);
+
                         ///////////////////////////////////////////////////////////////
                         //Funcionalidad para definir los valores de los inputs del form
                         inputNombreTarea.setAttribute("value", tareaAActualizar.nombre);
                         inputDescTarea.textContent = tareaAActualizar.descripcion;
                         inputEncargadoTarea.setAttribute("value", tareaAActualizar.encargado);
 
-                        
+
                         //funcionalidad para recorrer cada uno de los options de prioridad y establecer el valor de acuerdo 
                         // al objeto de la tarea
-                        for(const option of optionsSelectPrioridad){
+                        for (const option of optionsSelectPrioridad) {
                             //prueba
                             //console.log("tipo de dato:", typeof(option.textContent));
                             //console.log(option.textContent)
-                            
-                            if(option.textContent.trim() === tareaAActualizar.prioridad){
+
+                            if (option.textContent.trim() === tareaAActualizar.prioridad) {
                                 inputSelectPrioridad.value = option.value;
                             }
                         }
 
-                        //funcionalidad para recorrer cada uno de los options de estado de la tarea y establecer el valor de acuerdo 
-                        // al objeto de la tarea
-                        for(const option of optionsSelectEstado){
-                            const opcionesEstadoFormateadas = option.textContent.toLowerCase();
-
-                            //console.log(opcionesEstadoFormateadas);
-                            if(opcionesEstadoFormateadas.trim() === tareaAActualizar.estado){
-                                //prueba
-                                //console.log("coicidencia");
-
-                                inputSelectEstado.value = option.value;
-                            }
-                        }
-
+                    
                         //console.log(tareaAActualizar.descripcion);
-
-                    } else {
-                        console.log("Error en la respuesta:", result.data);
                     }
 
                 } catch (err) {
@@ -573,16 +565,16 @@ function abrirModalEditTasks() {
                 form.showModal();
 
 
+                
                 ///////////////////////////////////////////////////////////////
                 //Funcionalidad para enviar los valores actualizados del form
 
-                
-                formEditTask.forEach( form =>{
-                    form.addEventListener("submit", async (e) =>{
+                formEditTask.forEach(form => {
+                    form.addEventListener("submit", async (e) => {
                         console.log(e)
-                        e.preventDefault();
-                        const result = fetch("http://localhost:3000/edit-task", {
-                            method: "POST",
+                        //e.preventDefault();
+                        const result = fetch(`/dashboard/tasks/${idTarea}`, {
+                            method: "PUT",
                             headers: {
                                 "Content-Type": "application/json"
                             },
@@ -590,9 +582,8 @@ function abrirModalEditTasks() {
                                 nombre_tarea: e.target[0].value,
                                 prioridad: e.target[1].value,
                                 resumen: e.target[2].value,
-                                estado: e.target[3].value,
-                                encargado_tarea: e.target[4].value,
-                                sprint_tarea: e.target[5].value
+                                encargado_tarea: e.target[3].value,
+                                sprint_tarea: e.target[4].value
 
                             })
                         })
@@ -603,11 +594,11 @@ function abrirModalEditTasks() {
                         // console.log(e.target[1].value);
                         // console.log(e.target[2].value);
                         // console.log(e.target[3].value);
-                        // console.log(e.target[4].value);
+                        console.log(e.target[4].value);
                         // console.log(e.target[5].value);
                     })
                 })
-                
+
 
 
                 ///////////////////////////////////////////////////////////////
@@ -617,25 +608,25 @@ function abrirModalEditTasks() {
                 //prueba
                 //console.log(buttonDeleteTask);
 
-                buttonDeleteTask.addEventListener("click", async (e)=>{
+                buttonDeleteTask.addEventListener("click", async (e) => {
                     const elementoPadreDialog = e.target.parentNode.parentNode;
                     const hijosElementoPadreDialog = elementoPadreDialog.children
-                    const nombreTarea = hijosElementoPadreDialog[1][0].value;
+                    //const nombreTarea = hijosElementoPadreDialog[1][0].value;
 
-                    const taskToDelete = {
-                        "nombreTarea": nombreTarea
-                    }
 
-                    console.log(e.target.parentNode.parentNode.children[1][0].value)
-                    
-                    const result = await fetch("http://localhost:3000/delete-task", {
-                        method: "POST",
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify(taskToDelete)    
+                    //console.log(e.target.parentNode.parentNode.children[1][0].value)
+
+                    const result = await fetch(`dashboard/tasks/${idTarea}`, {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" }
                     })
 
-                    location.reload();
-                    
+                    if(result.status === 200){
+                        location.reload();
+                    }else{
+                        console.log("ERROR AL ELIMINAR LA TAREA");
+                    }
+
                 })
 
 

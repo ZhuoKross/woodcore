@@ -3,14 +3,14 @@ const authService = require("../services/authService.js")
 
 
 
-class PerosonsController {
+class PersonsController {
     constructor(){
 
     }
 
 
     consultarUno(req, res){
-
+        res.send({"message": "Un usuario"});
     }
 
     insertar(req, res){
@@ -57,4 +57,4 @@ class PerosonsController {
 
 
 
-module.exports = new PerosonsController();
+module.exports = new PersonsController();

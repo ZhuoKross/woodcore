@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
-const usersRoutes = require("./routes/personsRoutes");
+const usersRoutes = require("./routes/usersRoutes");
 const tareasRoutes = require("./routes/tareasRoutes");
 const proyectosRoutes = require("./routes/proyectosRoutes");
 
