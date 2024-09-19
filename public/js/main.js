@@ -11,7 +11,7 @@ const linkTareas = document.getElementById("crearTareas");
 ///////////////////////////////////////////////////////////////////////////////////////////
 // FUNCIONALIDAD PARA OBTENER LAS TAREAS DE LA BASE DE DATOS Y MOSTRARLAS EN PANTALLA
 async function fetchTareas() {
-    let res = await fetch("/task-info")
+    let res = await fetch("http://localhost:8080/tasks/all")
         .then(tareas => tareas.json())
         .then(tareas => {
 

@@ -3,11 +3,13 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 
 
-router.route("/")
-    .get("/:id", authController.consultarUno)
-    .post("/", authController.insertar)
-    .put("/:id", authController.actualizar)
-    .delete("/:id", authController.eliminar)
+router.post("/", authController.insertar);
+
+
+router.route("/:id")
+    .get(authController.consultarUno)
+    .put(authController.actualizar)
+    .delete(authController.eliminar)
 
 
 module.exports = router;
